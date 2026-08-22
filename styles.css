@@ -358,7 +358,6 @@ textarea:focus-visible {
   position: relative;
   width: min(72vw, 300px);
   aspect-ratio: 1;
-  margin-bottom: 1.25rem;
 }
 
 .hero__ring-svg {
@@ -444,7 +443,6 @@ textarea:focus-visible {
 .hero__photo {
   position: relative;
   width: 100%;
-  margin-top: 1.5rem;
   flex-shrink: 0;
 }
 
