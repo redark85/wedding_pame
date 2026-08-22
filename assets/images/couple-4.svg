@@ -1,4 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
-  <rect width="900" height="900" fill="#d9d2c1"/>
-  <text x="450" y="450" font-family="Georgia, serif" font-size="40" fill="#6b7a5e" text-anchor="middle">Foto 4</text>
+  <defs>
+    <linearGradient id="g4" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e9c9c3"/>
+      <stop offset="100%" stop-color="#6f8a69"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#g4)"/>
+  <g fill="none" stroke="#faf7f2" stroke-width="3" opacity="0.45" stroke-linecap="round">
+    <path d="M120,200 C260,220 320,300 300,420"/>
+    <path d="M780,700 C640,680 580,600 600,480"/>
+  </g>
+  <text x="450" y="470" font-family="Georgia, serif" font-size="34" fill="#faf7f2" text-anchor="middle" opacity="0.7">Fotografía 4</text>
 </svg>

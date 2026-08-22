@@ -4,22 +4,27 @@
    ========================================================= */
 
 :root {
-  /* Paleta: verde salvia, marfil, dorado apagado */
-  --color-bg: #faf7f2;
-  --color-bg-alt: #f2ede4;
+  /* Paleta: verde salvia + rosa polvo */
+  --color-bg: #fcf9f7;
+  --color-bg-alt: #f7f1ee;
   --color-text: #2f2d29;
   --color-text-soft: #5c5850;
-  --color-accent: #6b7a5e;      /* verde salvia */
-  --color-accent-dark: #3f4a3d;
-  --color-gold: #b08d57;        /* dorado apagado */
+  --color-accent: #6f8a69;      /* verde salvia */
+  --color-accent-dark: #3b4a37; /* verde bosque */
+  --color-rose: #c89e99;        /* rosa polvo acento */
+  --color-rose-light: #f4e6e4;  /* rosa muy suave para fondos */
+  --color-gold: #c89e99;        /* rosa polvo (antiguo dorado) */
   --color-white: #ffffff;
-  --color-line: #ddd6c8;
+  --color-line: #e9ded6;
 
   --font-display: "Cormorant Garamond", serif;
   --font-body: "Jost", sans-serif;
 
   --container-width: 640px;
   --container-padding: 1.5rem;
+
+  --app-max-width: 480px;
+  --page-bg: #e7e2d9;
 
   --radius: 4px;
   --transition-fast: 0.25s ease;
@@ -40,11 +45,27 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--color-bg);
+  background: var(--page-bg);
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- App shell: tarjeta tipo móvil centrada ---------- */
+.app-shell {
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+  background: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+@media (min-width: 481px) {
+  .app-shell {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+  }
 }
 
 img {
@@ -187,6 +208,11 @@ textarea:focus-visible {
     opacity: 1 !important;
     transform: none !important;
   }
+
+  .hero__image,
+  .closing__media img {
+    animation: none !important;
+  }
 }
 
 /* ---------- HERO ---------- */
@@ -209,6 +235,7 @@ textarea:focus-visible {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
+  animation: kenBurns 22s ease-out forwards;
 }
 
 .hero__overlay {
@@ -459,19 +486,27 @@ textarea:focus-visible {
 
 /* ---------- Dress code ---------- */
 .dresscode-section {
-  background: var(--color-accent);
-  color: var(--color-white);
+  background: var(--color-rose-light);
+  color: var(--color-accent-dark);
   text-align: center;
+}
+
+.dresscode-section .eyebrow {
+  color: var(--color-rose);
 }
 
 .dresscode__title {
   font-size: 1.9rem;
   margin-bottom: 0.6rem;
+  color: var(--color-accent-dark);
 }
 
 .dresscode__text {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-soft);
   font-size: 0.95rem;
+  max-width: 40ch;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 /* ---------- Galería ---------- */
@@ -672,6 +707,16 @@ textarea:focus-visible {
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
+  animation: kenBurns 26s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
 .closing__overlay {
@@ -709,7 +754,7 @@ textarea:focus-visible {
 .music-toggle {
   position: fixed;
   bottom: 1.25rem;
-  right: 1.25rem;
+  right: calc(max(0px, (100vw - var(--app-max-width)) / 2) + 1.25rem);
   z-index: 50;
   width: 48px;
   height: 48px;
@@ -789,75 +834,8 @@ textarea:focus-visible {
 }
 
 /* =========================================================
-   DESKTOP / TABLET
+   La invitación se muestra siempre como una tarjeta de ancho
+   móvil (ver .app-shell), tanto en teléfono como en escritorio,
+   a propósito para imitar la experiencia de una invitación
+   digital tipo "story". No hay breakpoints que la ensanchen.
    ========================================================= */
-@media (min-width: 768px) {
-  :root {
-    --container-width: 780px;
-  }
-
-  .only-desktop {
-    display: inline;
-  }
-
-  .section {
-    padding: 6.5rem 0;
-  }
-
-  .hero__names {
-    font-size: 4rem;
-  }
-
-  .hero__phrase {
-    font-size: 1.25rem;
-    max-width: 30ch;
-  }
-
-  .intro__text {
-    font-size: 1.6rem;
-  }
-
-  .date-block__day {
-    font-size: 5.5rem;
-  }
-
-  .countdown {
-    gap: 2.5rem;
-  }
-
-  .countdown__value {
-    font-size: 2.8rem;
-  }
-
-  .venue-card {
-    padding: 3rem 3.5rem;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  .rsvp-form {
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .closing {
-    min-height: 80vh;
-  }
-
-  .closing__names {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 1100px) {
-  :root {
-    --container-width: 900px;
-  }
-
-  .hero__content {
-    padding-bottom: 4.5rem;
-  }
-}

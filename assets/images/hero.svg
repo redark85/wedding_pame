@@ -1,15 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#8a9a7b"/>
-      <stop offset="100%" stop-color="#3f4a3d"/>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#7d9a76"/>
+      <stop offset="55%" stop-color="#4d5f47"/>
+      <stop offset="100%" stop-color="#3b4a37"/>
     </linearGradient>
+    <radialGradient id="heroGlow" cx="50%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#e9c9c3" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#e9c9c3" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="1200" height="1600" fill="url(#g)"/>
-  <text x="600" y="800" font-family="Georgia, serif" font-size="64" fill="#f2ede4" text-anchor="middle" opacity="0.85">
-    Foto de la pareja
+
+  <rect width="1200" height="1600" fill="url(#heroBg)"/>
+  <rect width="1200" height="1600" fill="url(#heroGlow)"/>
+
+  <!-- Ramas botánicas decorativas -->
+  <g fill="none" stroke="#e9c9c3" stroke-width="3" opacity="0.55" stroke-linecap="round">
+    <path d="M120,120 C220,160 260,260 220,360 C300,320 380,340 420,420"/>
+    <path d="M180,180 C200,220 240,240 260,280"/>
+    <path d="M260,240 C280,270 300,280 330,300"/>
+    <path d="M1080,1480 C980,1440 940,1340 980,1240 C900,1280 820,1260 780,1180"/>
+    <path d="M1020,1420 C1000,1380 960,1360 940,1320"/>
+    <path d="M940,1360 C920,1330 900,1320 870,1300"/>
+  </g>
+  <g fill="#e9c9c3" opacity="0.5">
+    <circle cx="220" cy="360" r="7"/>
+    <circle cx="330" cy="300" r="5"/>
+    <circle cx="980" cy="1240" r="7"/>
+    <circle cx="870" cy="1300" r="5"/>
+  </g>
+
+  <!-- Arco floral central -->
+  <g transform="translate(600,760)" opacity="0.9">
+    <ellipse cx="0" cy="0" rx="190" ry="230" fill="none" stroke="#f4e6e4" stroke-width="2" opacity="0.6"/>
+    <path d="M-140,-40 C-90,-140 90,-140 140,-40" fill="none" stroke="#e9c9c3" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="-118" r="6" fill="#e9c9c3"/>
+    <path d="M-40,-95 C-20,-70 20,-70 40,-95" fill="none" stroke="#e9c9c3" stroke-width="2"/>
+  </g>
+
+  <text x="600" y="800" font-family="'Cormorant Garamond', Georgia, serif" font-size="60" fill="#faf7f2" text-anchor="middle" letter-spacing="2">
+    Pamela &amp; Estéfano
   </text>
-  <text x="600" y="870" font-family="Georgia, serif" font-size="32" fill="#f2ede4" text-anchor="middle" opacity="0.6">
-    Reemplaza hero.jpg en assets/images
+  <text x="600" y="855" font-family="Georgia, serif" font-size="22" fill="#e9c9c3" text-anchor="middle" letter-spacing="6">
+    12 · DICIEMBRE · 2026
+  </text>
+
+  <text x="600" y="1520" font-family="Georgia, serif" font-size="22" fill="#faf7f2" text-anchor="middle" opacity="0.55">
+    Reemplaza este archivo por hero.jpg en assets/images
   </text>
 </svg>

@@ -1,4 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900">
-  <rect width="900" height="900" fill="#e4dccb"/>
-  <text x="450" y="450" font-family="Georgia, serif" font-size="40" fill="#6b7a5e" text-anchor="middle">Foto 5</text>
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b4a37"/>
+      <stop offset="100%" stop-color="#c89e99"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#g5)"/>
+  <circle cx="450" cy="450" r="150" fill="none" stroke="#f4e6e4" stroke-width="2" opacity="0.5"/>
+  <circle cx="450" cy="450" r="110" fill="none" stroke="#f4e6e4" stroke-width="1.5" opacity="0.35"/>
+  <text x="450" y="470" font-family="Georgia, serif" font-size="34" fill="#faf7f2" text-anchor="middle" opacity="0.7">Fotografía 5</text>
 </svg>
