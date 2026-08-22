@@ -325,87 +325,162 @@ textarea:focus-visible {
   .closing__media img {
     animation: none !important;
   }
+
+  .olive-branch,
+  .hero__date {
+    animation: none !important;
+  }
 }
 
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 560px;
+  min-height: 100vh;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-bg);
   overflow: hidden;
+  padding: 2.5rem 0rem 1rem;
 }
 
-.hero__media {
+.hero__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding-top: 0.5rem;
+}
+
+.hero__ring {
+  position: relative;
+  width: min(72vw, 300px);
+  aspect-ratio: 1;
+  margin-bottom: 1.25rem;
+}
+
+.hero__ring-svg {
   position: absolute;
   inset: 0;
-}
-
-.hero__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  animation: kenBurns 22s ease-out forwards;
+  display: block;
+  overflow: visible;
 }
 
-.hero__overlay {
+.olive-branch {
+  transform-origin: center;
+  animation: oliveSway 4.5s ease-in-out infinite;
+}
+
+.olive-branch--top {
+  transform-origin: 160px 160px;
+  animation-delay: 0s;
+}
+
+.olive-branch--bottom {
+  transform-origin: 160px 160px;
+  animation-delay: 0.6s;
+}
+
+.olive-branch ellipse,
+.olive-branch path {
+  transform-box: fill-box;
+}
+
+.hero__ring-names {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(20, 20, 15, 0.75) 0%, rgba(20, 20, 15, 0.25) 45%, rgba(20, 20, 15, 0.05) 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.25rem;
 }
 
-.hero__content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding: 0 1.5rem 3rem;
-  text-align: center;
-  color: var(--color-white);
+.hero__ring-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  color: var(--color-text-soft);
+  line-height: 1.15;
 }
 
-.hero__content .eyebrow {
-  color: rgba(255, 255, 255, 0.85);
+.hero__ring-name--top {
+  margin-bottom: -0.15em;
 }
 
-.hero__names {
-  font-size: 2.6rem;
-  margin-bottom: 0.5rem;
+.hero__ring-name--bottom {
+  margin-top: -0.15em;
+}
+
+.hero__ring-ampersand {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  color: var(--color-rose);
+  line-height: 1;
+  margin: 0.1em 0;
+}
+
+.hero__announce {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 5.5vw, 1.7rem);
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+  margin: 0 0 0.35rem;
 }
 
 .hero__date {
-  letter-spacing: 0.15em;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 3.6vw, 1rem);
+  letter-spacing: 0.18em;
+  color: var(--color-text-soft);
+  margin: 0;
+  animation: dateShimmer 3.2s ease-in-out infinite;
 }
 
-.hero__phrase {
-  font-style: italic;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  max-width: 24ch;
-  margin: 0 auto 1.75rem;
-  color: rgba(255, 255, 255, 0.95);
+.hero__photo {
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+  flex-shrink: 0;
 }
 
-.hero__cta {
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--color-accent-dark);
-  border-color: rgba(255, 255, 255, 0.95);
+.hero__photo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center 30%;
+  background: var(--color-bg-alt);
 }
 
-.hero__cta:hover,
-.hero__cta:focus-visible {
-  background: var(--color-white);
+.hero__photo-tear {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background-repeat: repeat-x;
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__photo-tear--top {
+  top: -1px;
+  background-image: radial-gradient(circle at 11px 22px, transparent 10px, var(--color-bg) 11px);
+}
+
+.hero__photo-tear--bottom {
+  bottom: -1px;
+  background-image: radial-gradient(circle at 11px 0, transparent 10px, var(--color-bg) 11px);
 }
 
 .hero__scroll-hint {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: 1rem;
   z-index: 1;
 }
 
@@ -413,7 +488,33 @@ textarea:focus-visible {
   display: block;
   width: 1px;
   height: 28px;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--color-text-soft);
+  opacity: 0.45;
+  margin: 0 auto;
+}
+
+@keyframes oliveSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+@keyframes dateShimmer {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translateX(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(-2px);
+  }
 }
 
 /* ---------- Intro ---------- */
