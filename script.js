@@ -33,6 +33,7 @@ const wedding = {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyWeddingConfig();
+  initEnvelopeGate();
   initScrollReveal();
   initOpenInvitation();
   initCountdown();
@@ -40,6 +41,49 @@ document.addEventListener("DOMContentLoaded", () => {
   initGallery();
   initRSVPForm();
 });
+
+/* ---------------------------------------------------------
+   Sobre de bienvenida: bloquea el scroll hasta que el
+   usuario pulsa el sello para "abrir" la invitación
+   --------------------------------------------------------- */
+function initEnvelopeGate() {
+  const gate = document.getElementById("envelopeGate");
+  const openBtn = document.getElementById("envelopeOpenBtn");
+
+  if (!gate || !openBtn) return;
+
+  document.documentElement.classList.add("scroll-locked");
+
+  function openEnvelope() {
+    gate.classList.add("is-open");
+    tryPlayMusic();
+
+    const unlock = () => {
+      gate.hidden = true;
+      document.documentElement.classList.remove("scroll-locked");
+    };
+
+    let unlocked = false;
+    gate.addEventListener(
+      "transitionend",
+      () => {
+        if (unlocked) return;
+        unlocked = true;
+        unlock();
+      },
+      { once: true }
+    );
+
+    // Respaldo por si prefers-reduced-motion desactiva la transición
+    setTimeout(() => {
+      if (unlocked) return;
+      unlocked = true;
+      unlock();
+    }, 1000);
+  }
+
+  openBtn.addEventListener("click", openEnvelope);
+}
 
 /* ---------------------------------------------------------
    Aplicar configuración al DOM
