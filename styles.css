@@ -148,12 +148,30 @@ html.scroll-locked body {
   color: var(--color-text-soft);
 }
 
-.envelope-gate__hint strong {
-  display: block;
+.envelope-gate__hint-btn {
+  display: inline-block;
   margin-top: 0.4rem;
+  font-family: inherit;
   font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--color-accent-dark);
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  animation: hintBounce 1.6s ease-in-out infinite;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope-gate__hint-btn {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initEnvelopeGate() {
   const gate = document.getElementById("envelopeGate");
   const openBtn = document.getElementById("envelopeOpenBtn");
+  const hintBtn = document.getElementById("envelopeHintBtn");
 
   if (!gate || !openBtn) return;
 
@@ -83,6 +84,7 @@ function initEnvelopeGate() {
   }
 
   openBtn.addEventListener("click", openEnvelope);
+  if (hintBtn) hintBtn.addEventListener("click", openEnvelope);
 }
 
 /* ---------------------------------------------------------
