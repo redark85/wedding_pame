@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a9a7b"/>
+      <stop offset="100%" stop-color="#3f4a3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#g)"/>
+  <text x="600" y="800" font-family="Georgia, serif" font-size="64" fill="#f2ede4" text-anchor="middle" opacity="0.85">
+    Foto de la pareja
+  </text>
+  <text x="600" y="870" font-family="Georgia, serif" font-size="32" fill="#f2ede4" text-anchor="middle" opacity="0.6">
+    Reemplaza hero.jpg en assets/images
+  </text>
+</svg>

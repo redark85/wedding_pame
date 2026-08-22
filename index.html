@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>María &amp; Juan — Nuestra boda</title>
+  <meta name="description" content="Acompáñanos a celebrar la boda de María y Juan el 12 de diciembre de 2026. Encuentra toda la información de la ceremonia, recepción e itinerario." />
+  <meta name="theme-color" content="#3f4a3d" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="María & Juan — Nuestra boda" />
+  <meta property="og:description" content="Nos encantaría compartir este día contigo. 12 de diciembre de 2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/hero.svg" />
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero__media">
+      <img src="assets/images/hero.svg" alt="María y Juan sonriendo juntos" class="hero__image" />
+      <div class="hero__overlay" aria-hidden="true"></div>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow fade-in">Nos casamos</p>
+      <h1 class="hero__names fade-in" id="heroNames">María &amp; Juan</h1>
+      <p class="hero__date fade-in" id="heroDate">12 · DICIEMBRE · 2026</p>
+      <p class="hero__phrase fade-in">"Nos encantaría compartir este día contigo"</p>
+      <button class="btn btn--primary hero__cta fade-in" id="openInvitationBtn" type="button">
+        Abrir invitación
+      </button>
+    </div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <main id="invitation">
+
+    <!-- ===================== INTRO ===================== -->
+    <section class="section intro" id="intro">
+      <div class="container reveal">
+        <p class="intro__text">
+          Hay momentos en la vida que merecen<br class="only-desktop" />
+          ser compartidos&hellip;
+        </p>
+        <p class="intro__text intro__text--emphasis">
+          Y queremos compartir este momento contigo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== FECHA Y CUENTA REGRESIVA ===================== -->
+    <section class="section countdown-section" id="countdown">
+      <div class="container reveal">
+        <div class="date-block">
+          <span class="date-block__day">12</span>
+          <span class="date-block__month">Diciembre</span>
+          <span class="date-block__year">2026</span>
+        </div>
+
+        <div class="countdown" id="countdownTimer" aria-live="polite">
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-days">00</span>
+            <span class="countdown__label">Días</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-hours">00</span>
+            <span class="countdown__label">Horas</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-minutes">00</span>
+            <span class="countdown__label">Min</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-seconds">00</span>
+            <span class="countdown__label">Seg</span>
+          </div>
+        </div>
+        <p class="countdown__message" id="countdownMessage" hidden></p>
+      </div>
+    </section>
+
+    <!-- ===================== CEREMONIA ===================== -->
+    <section class="section venue-section" id="ceremony">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Ceremonia</p>
+        <div class="venue-card">
+          <h2 class="venue-card__name" id="ceremonyName">Iglesia San Pedro</h2>
+          <p class="venue-card__address" id="ceremonyAddress">Calle Mayor 12, Madrid</p>
+          <p class="venue-card__time" id="ceremonyTime">16:00 h</p>
+          <p class="venue-card__desc">
+            Celebraremos nuestro enlace religioso en un entorno íntimo y lleno de luz. Te esperamos con tiempo para poder acompañarnos desde el inicio.
+          </p>
+          <a class="btn btn--outline" id="ceremonyMapsBtn" href="https://maps.app.goo.gl/5cDXNtQb9MtbwrJB8?g_st=iw" target="_blank" rel="noopener noreferrer">
+            Ver ubicación
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RECEPCIÓN ===================== -->
+    <section class="section venue-section venue-section--alt" id="reception">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Recepción</p>
+        <div class="venue-card">
+          <h2 class="venue-card__name" id="receptionName">Finca Los Olivos</h2>
+          <p class="venue-card__address" id="receptionAddress">Camino de los Olivos s/n, Madrid</p>
+          <p class="venue-card__time" id="receptionTime">18:00 h</p>
+          <p class="venue-card__desc">
+            La celebración continuará con cóctel, cena y fiesta al aire libre. Un espacio pensado para disfrutar sin prisas.
+          </p>
+          <a class="btn btn--outline" id="receptionMapsBtn" href="https://maps.google.com/?q=Finca+Los+Olivos+Madrid" target="_blank" rel="noopener noreferrer">
+            Ver ubicación
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ITINERARIO ===================== -->
+    <section class="section itinerary-section" id="itinerary">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Itinerario</p>
+        <ol class="timeline">
+          <li class="timeline__item">
+            <span class="timeline__time">16:00</span>
+            <span class="timeline__label">Ceremonia</span>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__time">17:30</span>
+            <span class="timeline__label">Cóctel</span>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__time">19:00</span>
+            <span class="timeline__label">Cena</span>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__time">21:00</span>
+            <span class="timeline__label">Celebración</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== DRESS CODE ===================== -->
+    <section class="section dresscode-section" id="dresscode">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Dress code</p>
+        <h2 class="dresscode__title" id="dressCodeText">Formal / Elegante</h2>
+        <p class="dresscode__text">
+          Queremos celebrar contigo con nuestro mejor estilo.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== GALERÍA ===================== -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Galería</p>
+        <div class="gallery" id="galleryGrid">
+          <button class="gallery__item" data-full="assets/images/couple-1.svg" aria-label="Ver fotografía 1 en grande">
+            <img src="assets/images/couple-1.svg" alt="María y Juan en un momento cotidiano" loading="lazy" />
+          </button>
+          <button class="gallery__item" data-full="assets/images/couple-2.svg" aria-label="Ver fotografía 2 en grande">
+            <img src="assets/images/couple-2.svg" alt="María y Juan paseando juntos" loading="lazy" />
+          </button>
+          <button class="gallery__item" data-full="assets/images/couple-3.svg" aria-label="Ver fotografía 3 en grande">
+            <img src="assets/images/couple-3.svg" alt="María y Juan riendo" loading="lazy" />
+          </button>
+          <button class="gallery__item" data-full="assets/images/couple-4.svg" aria-label="Ver fotografía 4 en grande">
+            <img src="assets/images/couple-4.svg" alt="María y Juan abrazados al atardecer" loading="lazy" />
+          </button>
+          <button class="gallery__item" data-full="assets/images/couple-5.svg" aria-label="Ver fotografía 5 en grande">
+            <img src="assets/images/couple-5.svg" alt="María y Juan mirándose" loading="lazy" />
+          </button>
+          <button class="gallery__item" data-full="assets/images/couple-6.svg" aria-label="Ver fotografía 6 en grande">
+            <img src="assets/images/couple-6.svg" alt="María y Juan celebrando" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RSVP ===================== -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow--center">Confirmación</p>
+        <h2 class="rsvp__title">¿Nos acompañas?</h2>
+        <p class="rsvp__subtitle">Queremos celebrar este día contigo.</p>
+
+        <form id="rsvpForm" class="rsvp-form" novalidate>
+
+          <div class="field">
+            <label for="fullName">Nombre completo</label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" required />
+            <span class="field__error" id="fullNameError" role="alert"></span>
+          </div>
+
+          <fieldset class="field field--attendance">
+            <legend>¿Asistirás?</legend>
+            <div class="attendance-toggle" role="group" aria-label="Confirmar asistencia">
+              <button type="button" class="attendance-btn" data-value="yes" aria-pressed="false">
+                Sí, asistiré
+              </button>
+              <button type="button" class="attendance-btn" data-value="no" aria-pressed="false">
+                No podré asistir
+              </button>
+            </div>
+            <input type="hidden" id="attendance" name="attendance" required />
+            <span class="field__error" id="attendanceError" role="alert"></span>
+          </fieldset>
+
+          <div class="field field--guests" id="guestsField">
+            <label for="guestCount">Número de acompañantes</label>
+            <div class="stepper">
+              <button type="button" class="stepper__btn" id="guestMinus" aria-label="Restar acompañante">&minus;</button>
+              <span class="stepper__value" id="guestCount" aria-live="polite">1</span>
+              <button type="button" class="stepper__btn" id="guestPlus" aria-label="Añadir acompañante">+</button>
+            </div>
+          </div>
+
+          <div class="field" id="dietField">
+            <label for="dietary">Restricciones alimentarias</label>
+            <input type="text" id="dietary" name="dietary" placeholder="Ej. vegetariano, alergias, etc." />
+          </div>
+
+          <div class="field">
+            <label for="message">Mensaje para los novios</label>
+            <textarea id="message" name="message" rows="3" placeholder="Escríbenos unas palabras (opcional)"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary rsvp-submit" id="rsvpSubmitBtn">
+            Confirmar
+          </button>
+        </form>
+
+        <div class="rsvp-success" id="rsvpSuccess" hidden role="status">
+          <h3 id="rsvpSuccessTitle">¡Gracias!</h3>
+          <p id="rsvpSuccessText">Hemos recibido tu confirmación. Nos hace mucha ilusión compartir este día contigo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SECCIÓN FINAL ===================== -->
+    <section class="section closing" id="closing">
+      <div class="closing__media">
+        <img src="assets/images/hero.svg" alt="María y Juan" loading="lazy" />
+        <div class="closing__overlay" aria-hidden="true"></div>
+      </div>
+      <div class="closing__content reveal">
+        <h2 class="closing__names">María &amp; Juan</h2>
+        <p class="closing__date">12 · 12 · 2026</p>
+        <p class="closing__text">Gracias por formar parte<br />de nuestra historia.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== BOTÓN MÚSICA ===================== -->
+  <button id="musicToggle" class="music-toggle" type="button" aria-label="Reproducir música" aria-pressed="false">
+    <span class="music-toggle__icon" aria-hidden="true">&#9835;</span>
+  </button>
+  <audio id="bgMusic" src="assets/audio/song.mp3" preload="none" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
