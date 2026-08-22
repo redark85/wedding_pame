@@ -34,6 +34,7 @@ const wedding = {
 document.addEventListener("DOMContentLoaded", () => {
   applyWeddingConfig();
   initEnvelopeGate();
+  initScrollHint();
   initScrollReveal();
   initOpenInvitation();
   initCountdown();
@@ -41,6 +42,24 @@ document.addEventListener("DOMContentLoaded", () => {
   initGallery();
   initRSVPForm();
 });
+
+/* ---------------------------------------------------------
+   Indicador de "desliza": se oculta en cuanto el usuario
+   empieza a hacer scroll
+   --------------------------------------------------------- */
+function initScrollHint() {
+  const hint = document.getElementById("scrollHint");
+  if (!hint) return;
+
+  function onScroll() {
+    if (window.scrollY > 30) {
+      hint.classList.add("is-hidden");
+      window.removeEventListener("scroll", onScroll);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
 
 /* ---------------------------------------------------------
    Sobre de bienvenida: bloquea el scroll hasta que el
