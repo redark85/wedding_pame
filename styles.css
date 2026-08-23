@@ -9,11 +9,16 @@
   --color-bg-alt: #f7f1ee;
   --color-text: #2f2d29;
   --color-text-soft: #5c5850;
-  --color-accent: #6f8a69;      /* verde salvia */
-  --color-accent-dark: #3b4a37; /* verde bosque */
-  --color-rose: #c89e99;        /* rosa polvo acento */
-  --color-rose-light: #f4e6e4;  /* rosa muy suave para fondos */
-  --color-gold: #c89e99;        /* rosa polvo (antiguo dorado) */
+  --color-accent: #6f8a69;
+  /* verde salvia */
+  --color-accent-dark: #3b4a37;
+  /* verde bosque */
+  --color-rose: #c89e99;
+  /* rosa polvo acento */
+  --color-rose-light: #f4e6e4;
+  /* rosa muy suave para fondos */
+  --color-gold: #c89e99;
+  /* rosa polvo (antiguo dorado) */
   --color-white: #ffffff;
   --color-line: #e9ded6;
 
@@ -25,6 +30,9 @@
 
   --app-max-width: 480px;
   --page-bg: #e7e2d9;
+
+  --color-sage-mist: #9aa5a5;
+  /* verde grisáceo de los divisores */
 
   --radius: 4px;
   --transition-fast: 0.25s ease;
@@ -164,8 +172,15 @@ html.scroll-locked body {
 }
 
 @keyframes hintBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -194,7 +209,9 @@ a {
   color: inherit;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 500;
   margin: 0;
@@ -285,11 +302,25 @@ textarea:focus-visible {
   animation: fadeInUp 0.9s ease forwards;
 }
 
-.fade-in:nth-child(1) { animation-delay: 0.1s; }
-.fade-in:nth-child(2) { animation-delay: 0.3s; }
-.fade-in:nth-child(3) { animation-delay: 0.5s; }
-.fade-in:nth-child(4) { animation-delay: 0.7s; }
-.fade-in:nth-child(5) { animation-delay: 0.9s; }
+.fade-in:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.fade-in:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.fade-in:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.fade-in:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+.fade-in:nth-child(5) {
+  animation-delay: 0.9s;
+}
 
 @keyframes fadeInUp {
   to {
@@ -307,12 +338,14 @@ textarea:focus-visible {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
   .fade-in,
   .reveal {
     animation: none !important;
@@ -492,23 +525,35 @@ textarea:focus-visible {
 }
 
 @keyframes oliveSway {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(1.6deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(1.6deg);
+  }
 }
 
 @keyframes dateShimmer {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.85;
     transform: translateX(0);
   }
+
   25% {
     opacity: 1;
     transform: translateX(2px);
   }
+
   50% {
     opacity: 0.9;
     transform: translateX(0);
   }
+
   75% {
     opacity: 1;
     transform: translateX(-2px);
@@ -517,21 +562,69 @@ textarea:focus-visible {
 
 /* ---------- Intro ---------- */
 .intro {
+  position: relative;
   text-align: center;
   background: var(--color-bg);
+  overflow: hidden;
+  padding: 0;
+}
+
+.intro__flower {
+  position: absolute;
+  width: 130px;
+  max-width: 34vw;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.intro__flower img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.intro__flower--top {
+  top: 1.5rem;
+  right: -0.5rem;
+}
+
+.intro__flower--bottom {
+  bottom: 1.5rem;
+  left: -0.5rem;
+  transform: rotate(180deg);
+}
+
+.intro__block {
+  padding: 1.5rem 1.25rem 1.5rem;
 }
 
 .intro__text {
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  line-height: 1.5;
+  font-style: italic;
+  font-size: 1.8rem;
+  line-height: 1.6;
   color: var(--color-text-soft);
 }
 
-.intro__text--emphasis {
-  margin-top: 1rem;
-  color: var(--color-accent-dark);
-  font-weight: 500;
+.intro__divisor {
+  line-height: 0;
+}
+
+.intro__divisor img {
+  width: 100%;
+  display: block;
+}
+
+.intro__quote {
+  background: var(--color-sage-mist);
+  padding: 1.5rem 2.0rem;
+}
+
+.intro__quote-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--color-white);
 }
 
 /* ---------- Countdown ---------- */
@@ -925,6 +1018,7 @@ textarea:focus-visible {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.08);
   }
@@ -998,14 +1092,22 @@ textarea:focus-visible {
 }
 
 @keyframes scrollHintSwipe {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(-10deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(-10deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-hint__icon {
     animation: none;
   }
+
   .scroll-hint {
     transition: none;
   }
@@ -1040,8 +1142,15 @@ textarea:focus-visible {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1093,6 +1202,74 @@ textarea:focus-visible {
 .lightbox__close:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
+
+/* =========================================================
+   Animaciones Pablo Cornejo
+   ========================================================= */
+.w-\[75px\] {
+    width: 75px;
+}
+.z-20 {
+    z-index: 20;
+}
+.-left-\[20px\] {
+    left: -20px;
+}
+
+.-bottom-\[10px\] {
+    bottom: -10px;
+}
+.w-\[87px\] {
+    width: 87px;
+}
+.left-\[8px\] {
+    left: 8px;
+}
+.-bottom-\[12px\] {
+    bottom: -12px;
+}
+
+.absolute {
+    position: absolute;
+}
+.w-28 {
+  width: 7rem;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.flex {
+  display: flex;
+}
+
+@keyframes wind {
+
+  0%,
+  to {
+    transform: rotate(0deg) translateX(0) translateY(0)
+  }
+
+  25% {
+    transform: rotate(2deg) translateX(2px) translateY(-2px)
+  }
+
+  50% {
+    transform: rotate(-2deg) translateX(-2px) translateY(2px)
+  }
+
+  75% {
+    transform: rotate(1deg) translateX(1px) translateY(-1px)
+  }
+}
+
+.animate-wind {
+  animation: wind 5s ease-in-out infinite;
+}
+
+
 
 /* =========================================================
    La invitación se muestra siempre como una tarjeta de ancho
