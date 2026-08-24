@@ -230,7 +230,7 @@ p {
 }
 
 .section {
-  padding: 2.5rem 0;
+  padding: 1.5rem 0;
 }
 
 .only-desktop {
@@ -795,7 +795,6 @@ textarea:focus-visible {
 
 /* ---------- Dress code ---------- */
 .dresscode-section {
-  background: var(--color-rose-light);
   color: var(--color-accent-dark);
   text-align: center;
 }
