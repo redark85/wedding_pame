@@ -16,7 +16,7 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -28,7 +28,7 @@
     <div class="envelope-gate__inner">
       <p class="envelope-gate__names">
         Pamela Almeida<br />
-        <span>&amp;</span><br />
+        <span class="envelope-gate__names">&amp;</span><br />
         Estéfano Cevallos
       </p>
 
@@ -115,6 +115,27 @@
       </div>
     </section>
 
+      <!-- ===================== CEREMONIA ===================== -->
+    <section class="section venue-section" id="ceremony">
+      <div class="container reveal">
+        <p class="venue-card__name eyebrow--center">Ceremonia</p>
+        <div class="venue-card">
+          <p style="font-family: 'Great Vibes';" class="venue-card__name" id="ceremonyName">Iglesia San Pedro</p>
+          <img  class="venue-card__img" src="assets/images/hacienda.jpg" alt="Iglesia San Pedro" />
+          <p class="venue-card__address" id="ceremonyAddress">Aguamaña y Via Antigua, Quito</p>
+          <p class="venue-card__time" id="ceremonyTime">16:00 h</p>
+          <p class="venue-card__desc">
+            Celebraremos nuestro enlace en un entorno íntimo y lleno de luz. Te esperamos con tiempo para poder acompañarnos desde el inicio.
+          </p>
+          <button id="ceremonyMapsBtn" class="mx-auto flex flex-col items-center justify-center" data-editor-field="address.href" style="opacity: 1;">
+            <img src="assets/images/map-locator.png" class="icon animate-lightbounce w-20  " alt="pin" width="80">
+            <p class="text relative -top-3" data-editor-field="address.clic">(Pulsa para ver en Maps)</p>
+          </button>
+      
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== FECHA Y CUENTA REGRESIVA ===================== -->
     <section class="section countdown-section" id="countdown">
       <div class="container reveal">
@@ -146,23 +167,7 @@
       </div>
     </section>
 
-    <!-- ===================== CEREMONIA ===================== -->
-    <section class="section venue-section" id="ceremony">
-      <div class="container reveal">
-        <p class="eyebrow eyebrow--center">Ceremonia</p>
-        <div class="venue-card">
-          <h2 class="venue-card__name" id="ceremonyName">Iglesia San Pedro</h2>
-          <p class="venue-card__address" id="ceremonyAddress">Calle Mayor 12, Madrid</p>
-          <p class="venue-card__time" id="ceremonyTime">16:00 h</p>
-          <p class="venue-card__desc">
-            Celebraremos nuestro enlace religioso en un entorno íntimo y lleno de luz. Te esperamos con tiempo para poder acompañarnos desde el inicio.
-          </p>
-          <a class="btn btn--outline" id="ceremonyMapsBtn" href="https://maps.app.goo.gl/5cDXNtQb9MtbwrJB8?g_st=iw" target="_blank" rel="noopener noreferrer">
-            Ver ubicación
-          </a>
-        </div>
-      </div>
-    </section>
+  
 
     <!-- ===================== RECEPCIÓN ===================== -->
     <section class="section venue-section venue-section--alt" id="reception">
