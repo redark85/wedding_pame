@@ -160,71 +160,10 @@
       </div>
     </section>
 
-     <!-- ===================== GALERÍA ===================== -->
-    <section class="section gallery-section" id="gallery">
-      <div class="container reveal">
-        <p class="venue-card__name eyebrow--center">Galería</p>
-        <div class="gallery" id="galleryGrid">
-          <button class="gallery__item" data-full="assets/images/couple-1.svg" aria-label="Ver fotografía 1 en grande">
-            <img src="assets/images/couple-1.svg" alt="Pamela y Estéfano en un momento cotidiano" loading="lazy" />
-          </button>
-          <button class="gallery__item" data-full="assets/images/couple-2.svg" aria-label="Ver fotografía 2 en grande">
-            <img src="assets/images/couple-2.svg" alt="Pamela y Estéfano paseando juntos" loading="lazy" />
-          </button>
-          <button class="gallery__item" data-full="assets/images/couple-3.svg" aria-label="Ver fotografía 3 en grande">
-            <img src="assets/images/couple-3.svg" alt="Pamela y Estéfano riendo" loading="lazy" />
-          </button>
-          <button class="gallery__item" data-full="assets/images/couple-4.svg" aria-label="Ver fotografía 4 en grande">
-            <img src="assets/images/couple-4.svg" alt="Pamela y Estéfano abrazados al atardecer" loading="lazy" />
-          </button>
-          <button class="gallery__item" data-full="assets/images/couple-5.svg" aria-label="Ver fotografía 5 en grande">
-            <img src="assets/images/couple-5.svg" alt="Pamela y Estéfano mirándose" loading="lazy" />
-          </button>
-          <button class="gallery__item" data-full="assets/images/couple-6.svg" aria-label="Ver fotografía 6 en grande">
-            <img src="assets/images/couple-6.svg" alt="Pamela y Estéfano celebrando" loading="lazy" />
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== FECHA Y CUENTA REGRESIVA ===================== -->
-    <section class="section countdown-section" id="countdown">
-      <div class="container reveal">
-        <div class="date-block">
-          <span class="date-block__day">12</span>
-          <span class="date-block__month">Diciembre</span>
-          <span class="date-block__year">2026</span>
-        </div>
-
-        <div class="countdown" id="countdownTimer" aria-live="polite">
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-days">00</span>
-            <span class="countdown__label">Días</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-hours">00</span>
-            <span class="countdown__label">Horas</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-minutes">00</span>
-            <span class="countdown__label">Min</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-seconds">00</span>
-            <span class="countdown__label">Seg</span>
-          </div>
-        </div>
-        <p class="countdown__message" id="countdownMessage" hidden></p>
-      </div>
-    </section>
-
-   
-
     <!-- ===================== RSVP ===================== -->
     <section class="section rsvp-section" id="rsvp">
       <div class="container reveal">
-        <p class="eyebrow eyebrow--center">Confirmación</p>
-        <h2 class="rsvp__title">¿Nos acompañas?</h2>
+        <p class="venue-card__name eyebrow--center">¿Nos acompañas?</p>
         <p class="rsvp__subtitle">Queremos celebrar este día contigo.</p>
 
         <form id="rsvpForm" class="rsvp-form" novalidate>
@@ -279,6 +218,77 @@
         </div>
       </div>
     </section>
+
+     <!-- ===================== GALERÍA ===================== -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container reveal">
+        <p class="venue-card__name eyebrow--center">Galería</p>
+        <div class="gallery" id="galleryCarousel" aria-label="Carrusel de fotos">
+          <div class="gallery__track">
+            <div class="gallery__slides" id="gallerySlides">
+              <button class="gallery__slide" data-full="assets/images/couple-1.svg" aria-label="Ver fotografía 1 en grande" type="button">
+                <img src="assets/images/couple-1.svg" alt="Pamela y Estéfano en un momento cotidiano" loading="lazy" />
+              </button>
+              <button class="gallery__slide" data-full="assets/images/couple-2.svg" aria-label="Ver fotografía 2 en grande" type="button">
+                <img src="assets/images/couple-2.svg" alt="Pamela y Estéfano paseando juntos" loading="lazy" />
+              </button>
+              <button class="gallery__slide" data-full="assets/images/couple-3.svg" aria-label="Ver fotografía 3 en grande" type="button">
+                <img src="assets/images/couple-3.svg" alt="Pamela y Estéfano riendo" loading="lazy" />
+              </button>
+              <button class="gallery__slide" data-full="assets/images/couple-4.svg" aria-label="Ver fotografía 4 en grande" type="button">
+                <img src="assets/images/couple-4.svg" alt="Pamela y Estéfano abrazados al atardecer" loading="lazy" />
+              </button>
+              <button class="gallery__slide" data-full="assets/images/couple-5.svg" aria-label="Ver fotografía 5 en grande" type="button">
+                <img src="assets/images/couple-5.svg" alt="Pamela y Estéfano mirándose" loading="lazy" />
+              </button>
+              <button class="gallery__slide" data-full="assets/images/couple-6.svg" aria-label="Ver fotografía 6 en grande" type="button">
+                <img src="assets/images/couple-6.svg" alt="Pamela y Estéfano celebrando" loading="lazy" />
+              </button>
+            </div>
+          </div>
+
+          <button type="button" class="gallery__arrow gallery__arrow--prev" id="galleryPrev" aria-label="Foto anterior">&#10094;</button>
+          <button type="button" class="gallery__arrow gallery__arrow--next" id="galleryNext" aria-label="Foto siguiente">&#10095;</button>
+
+          <div class="gallery__dots" id="galleryDots" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FECHA Y CUENTA REGRESIVA ===================== -->
+    <section class="section countdown-section" id="countdown">
+      <div class="container reveal">
+        <div class="date-block">
+          <span class="date-block__day">12</span>
+          <span class="date-block__month">Diciembre</span>
+          <span class="date-block__year">2026</span>
+        </div>
+
+        <div class="countdown" id="countdownTimer" aria-live="polite">
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-days">00</span>
+            <span class="countdown__label">Días</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-hours">00</span>
+            <span class="countdown__label">Horas</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-minutes">00</span>
+            <span class="countdown__label">Min</span>
+          </div>
+          <div class="countdown__item">
+            <span class="countdown__value" id="cd-seconds">00</span>
+            <span class="countdown__label">Seg</span>
+          </div>
+        </div>
+        <p class="countdown__message" id="countdownMessage" hidden></p>
+      </div>
+    </section>
+
+   
+
+    
 
     <!-- ===================== SECCIÓN FINAL ===================== -->
     <section class="section closing" id="closing">

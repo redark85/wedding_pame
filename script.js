@@ -288,9 +288,49 @@ function updateMusicButton() {
    Galería + Lightbox (vanilla)
    --------------------------------------------------------- */
 function initGallery() {
-  const galleryItems = document.querySelectorAll(".gallery__item");
-  if (!galleryItems.length) return;
+  const slides = document.querySelectorAll(".gallery__slide");
+  if (!slides.length) return;
 
+  const slidesContainer = document.getElementById("gallerySlides");
+  const dotsContainer = document.getElementById("galleryDots");
+  const prevBtn = document.getElementById("galleryPrev");
+  const nextBtn = document.getElementById("galleryNext");
+
+  let currentIndex = 0;
+  const total = slides.length;
+
+  // Crear dots
+  if (dotsContainer) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "gallery__dot";
+      dot.setAttribute("aria-label", `Ir a la foto ${i + 1}`);
+      dot.addEventListener("click", () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const dots = dotsContainer ? dotsContainer.querySelectorAll(".gallery__dot") : [];
+
+  function update() {
+    if (slidesContainer) {
+      slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+    dots.forEach((dot, i) => dot.classList.toggle("is-active", i === currentIndex));
+    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentIndex === total - 1;
+  }
+
+  function goTo(index) {
+    currentIndex = Math.max(0, Math.min(total - 1, index));
+    update();
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", () => goTo(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener("click", () => goTo(currentIndex + 1));
+
+  // Lightbox
   let lightbox = document.querySelector(".lightbox");
 
   if (!lightbox) {
@@ -310,7 +350,7 @@ function initGallery() {
     lightboxImg.src = src;
     lightboxImg.alt = alt || "";
     lightbox.classList.add("is-open");
-    closeBtn.focus();
+    if (closeBtn) closeBtn.focus();
     document.body.style.overflow = "hidden";
   }
 
@@ -320,7 +360,7 @@ function initGallery() {
     document.body.style.overflow = "";
   }
 
-  galleryItems.forEach((item) => {
+  slides.forEach((item) => {
     item.addEventListener("click", () => {
       const full = item.getAttribute("data-full");
       const img = item.querySelector("img");
@@ -328,7 +368,7 @@ function initGallery() {
     });
   });
 
-  closeBtn.addEventListener("click", closeLightbox);
+  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
 
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
@@ -337,8 +377,32 @@ function initGallery() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
       closeLightbox();
+    } else if (!lightbox.classList.contains("is-open")) {
+      if (event.key === "ArrowLeft") goTo(currentIndex - 1);
+      if (event.key === "ArrowRight") goTo(currentIndex + 1);
     }
   });
+
+  // Swipe en móvil
+  let startX = 0;
+  const track = document.querySelector(".gallery__track");
+
+  if (track) {
+    track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) goTo(currentIndex + 1);
+        else goTo(currentIndex - 1);
+      }
+    }, { passive: true });
+  }
+
+  update();
 }
 
 /* ---------------------------------------------------------
