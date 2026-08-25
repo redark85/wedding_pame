@@ -111,7 +111,7 @@ function initEnvelopeGate() {
    --------------------------------------------------------- */
 function applyWeddingConfig() {
   const ceremonyMapsBtn = document.getElementById("ceremonyMapsBtn");
-  const receptionMapsBtn = document.getElementById("receptionMapsBtn");
+  
 
   document.getElementById("ceremonyName").textContent = wedding.ceremony.name;
   document.getElementById("ceremonyAddress").textContent = wedding.ceremony.address;
@@ -122,10 +122,7 @@ function applyWeddingConfig() {
     });
   }
 
-  document.getElementById("receptionName").textContent = wedding.reception.name;
-  document.getElementById("receptionAddress").textContent = wedding.reception.address;
-  document.getElementById("receptionTime").textContent = `${wedding.reception.time} h`;
-  if (receptionMapsBtn) receptionMapsBtn.href = wedding.reception.mapsUrl;
+ 
 
   const dressCodeEl = document.getElementById("dressCodeText");
   if (dressCodeEl) dressCodeEl.textContent = wedding.dressCode;

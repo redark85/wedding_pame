@@ -230,7 +230,7 @@ p {
 }
 
 .section {
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .only-desktop {
@@ -797,6 +797,7 @@ textarea:focus-visible {
 .dresscode-section {
   color: var(--color-accent-dark);
   text-align: center;
+  position: relative;
 }
 
 .dresscode-section .eyebrow {
@@ -806,15 +807,16 @@ textarea:focus-visible {
 .dresscode__title {
   font-size: 2.6rem;
   margin-bottom: 0.6rem;
-  color: var(--color-accent-dark);
+  color: rgb(255, 255, 254);
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
 }
 
 .dresscode__text {
-  color: var(--color-text-soft);
-  font-size: 0.95rem;
-  max-width: 40ch;
-  margin: 0 auto;
-  line-height: 1.7;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--color-white);
 }
 
 /* ---------- Galería ---------- */
@@ -1224,6 +1226,9 @@ textarea:focus-visible {
 .-bottom-\[10px\] {
     bottom: -10px;
 }
+.-bottom-\[20px\] {
+    bottom: 20px;
+}
 .w-\[87px\] {
     width: 87px;
 }
@@ -1273,11 +1278,22 @@ textarea:focus-visible {
   animation: wind 5s ease-in-out infinite;
 }
 
-/* =========================================================
-   Animaciones Boton Pablo Cornejo
-   ========================================================= */
-
-   .gap-3 {
+.w-\[87px\] {
+    width: 87px;
+}
+.right-\[4px\] {
+    right: 4px;
+}
+.-bottom-\[16px\] {
+    bottom: 16px;
+}
+.w-\[70px\] {
+    width: 70px;
+}
+.-right-\[25px\] {
+    right: -25px;
+}
+.gap-3 {
     gap: .75rem;
 }
 .justify-center {
@@ -1349,7 +1365,27 @@ audio, canvas, embed, iframe, img, object, svg, video {
     border: 0 solid #e5e7eb;
 }
 
+@keyframes windy {
+    0%,to {
+        transform: rotate(0deg) translateX(0) translateY(0)
+    }
 
+    25% {
+        transform: rotate(2deg) translateX(0) translateY(-2px)
+    }
+
+    50% {
+        transform: rotate(-2deg) translateX(0) translateY(2px)
+    }
+
+    75% {
+        transform: rotate(1deg) translateX(0) translateY(-1px)
+    }
+}
+
+.animate-windy {
+    animation: windy 5s ease-in-out infinite
+}
 
 /* =========================================================
    La invitación se muestra siempre como una tarjeta de ancho
