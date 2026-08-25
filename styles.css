@@ -820,6 +820,84 @@ textarea:focus-visible {
   color: var(--color-white);
 }
 
+.photo-album-section {
+  background: var(--color-bg-alt);
+  text-align: center;
+}
+
+.photo-album__title {
+  margin-bottom: 0.35rem;
+  color: var(--color-accent-dark);
+  font-family: var(--font-script);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.photo-album__lead,
+.photo-album__text {
+  margin-inline: auto;
+  color: var(--color-text-soft);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.photo-album__lead {
+  margin-bottom: 1rem;
+}
+
+.photo-album__camera {
+  display: block;
+  width: 5rem;
+  max-width: 45%;
+  margin: 0 auto 1.25rem;
+}
+
+.photo-album__text {
+  max-width: 370px;
+  margin-bottom: 1.5rem;
+}
+
+.photo-album__qr-link {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1rem;
+  padding: 0.65rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  box-shadow: 0 8px 24px rgba(59, 74, 55, 0.12);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.photo-album__qr-link:hover,
+.photo-album__qr-link:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(59, 74, 55, 0.18);
+}
+
+.photo-album__qr {
+  display: block;
+  width: 190px;
+  height: 190px;
+}
+
+.photo-album__code-label {
+  margin-bottom: 0.1rem;
+  color: var(--color-text-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.photo-album__code {
+  color: var(--color-accent-dark);
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
 /* ---------- Galería ---------- */
 .gallery-section {
   background: var(--color-bg-alt);
