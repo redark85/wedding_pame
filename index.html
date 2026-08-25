@@ -231,14 +231,15 @@
             <span class="field__error" id="attendanceError" role="alert"></span>
           </fieldset>
 
-          <div class="field field--guests" id="guestsField">
-            <label for="guestCount">Número de acompañantes</label>
-            <div class="stepper">
-              <button type="button" class="stepper__btn" id="guestMinus" aria-label="Restar acompañante">&minus;</button>
-              <span class="stepper__value" id="guestCount" aria-live="polite">1</span>
-              <button type="button" class="stepper__btn" id="guestPlus" aria-label="Añadir acompañante">+</button>
+          <fieldset class="field field--lactose" id="lactoseField">
+            <legend>¿Eres intolerante a la lactosa?</legend>
+            <div class="lactose-toggle" role="group" aria-label="Indicar intolerancia a la lactosa">
+              <button type="button" class="lactose-btn" data-value="yes" aria-pressed="false">Sí</button>
+              <button type="button" class="lactose-btn" data-value="no" aria-pressed="false">No</button>
             </div>
-          </div>
+            <input type="hidden" id="lactoseIntolerant" name="lactoseIntolerant" required />
+            <span class="field__error" id="lactoseError" role="alert"></span>
+          </fieldset>
 
           <div class="field" id="dietField">
             <label for="dietary">Restricciones alimentarias</label>
@@ -263,15 +264,13 @@
     </section>
 
     
-    <!-- ===================== FECHA Y CUENTA REGRESIVA ===================== -->
-    <section class="section countdown-section" id="countdown">
-      <div class="container reveal">
-        <div class="date-block">
-          <span class="date-block__day">12</span>
-          <span class="date-block__month">Diciembre</span>
-          <span class="date-block__year">2026</span>
-        </div>
-
+     <!-- ===================== CONTADOR ===================== -->
+    <section class="section dresscode-section" id="countdown">
+      <div class="intro__divisor">
+        <img src="assets/images/divisor.png" alt="" />
+      </div>
+      <div class="container reveal" style="background: #9aa5a5; padding-bottom: 5rem;">
+        <p class="venue-card__name eyebrow--center" style="color: #ffffff !important;">Nos vemos en</p>
         <div class="countdown" id="countdownTimer" aria-live="polite">
           <div class="countdown__item">
             <span class="countdown__value" id="cd-days">00</span>
@@ -292,23 +291,16 @@
         </div>
         <p class="countdown__message" id="countdownMessage" hidden></p>
       </div>
+      
     </section>
-
-   
+      
 
     
 
     <!-- ===================== SECCIÓN FINAL ===================== -->
     <section class="section closing" id="closing">
-      <div class="closing__media">
-        <img src="assets/images/hero.svg" alt="Pamela y Estéfano" loading="lazy" />
-        <div class="closing__overlay" aria-hidden="true"></div>
-      </div>
-      <div class="closing__content reveal">
-        <h2 class="closing__names">Pamela Almeida &amp; Estéfano Cevallos</h2>
-        <p class="closing__date">12 · 12 · 2026</p>
-        <p class="closing__text">Gracias por formar parte<br />de nuestra historia.</p>
-      </div>
+     
+   
     </section>
 
   </main>

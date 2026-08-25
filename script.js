@@ -417,10 +417,10 @@ function initRSVPForm() {
   const attendanceInput = document.getElementById("attendance");
   const attendanceError = document.getElementById("attendanceError");
   const attendanceBtns = form.querySelectorAll(".attendance-btn");
-  const guestsField = document.getElementById("guestsField");
-  const guestCountEl = document.getElementById("guestCount");
-  const guestMinusBtn = document.getElementById("guestMinus");
-  const guestPlusBtn = document.getElementById("guestPlus");
+  const lactoseInput = document.getElementById("lactoseIntolerant");
+  const lactoseError = document.getElementById("lactoseError");
+  const lactoseBtns = form.querySelectorAll(".lactose-btn");
+  const lactoseField = document.getElementById("lactoseField");
   const dietaryInput = document.getElementById("dietary");
   const dietField = document.getElementById("dietField");
   const messageInput = document.getElementById("message");
@@ -429,9 +429,13 @@ function initRSVPForm() {
   const successText = document.getElementById("rsvpSuccessText");
   const submitBtn = document.getElementById("rsvpSubmitBtn");
 
-  let guestCount = 1;
-  const MAX_GUESTS = 8;
-  const MIN_GUESTS = 1;
+  function setLactoseIntolerance(value) {
+    lactoseInput.value = value;
+    lactoseBtns.forEach((btn) => {
+      const isActive = btn.dataset.value === value;
+      btn.setAttribute("aria-pressed", String(isActive));
+    });
+  }
 
   function setAttendance(value) {
     attendanceInput.value = value;
@@ -441,29 +445,27 @@ function initRSVPForm() {
     });
 
     const showExtras = value === "yes";
-    guestsField.hidden = !showExtras;
+    lactoseField.hidden = !showExtras;
     dietField.hidden = !showExtras;
+    if (!showExtras) setLactoseIntolerance("");
   }
 
   attendanceBtns.forEach((btn) => {
     btn.addEventListener("click", () => setAttendance(btn.dataset.value));
   });
 
-  // Estado inicial: campos de acompañantes ocultos hasta confirmar asistencia
-  guestsField.hidden = true;
+  lactoseBtns.forEach((btn) => {
+    btn.addEventListener("click", () => setLactoseIntolerance(btn.dataset.value));
+  });
+
+  // Estado inicial: campos adicionales ocultos hasta confirmar asistencia
+  lactoseField.hidden = true;
   dietField.hidden = true;
-
-  function updateGuestCount(delta) {
-    guestCount = Math.min(MAX_GUESTS, Math.max(MIN_GUESTS, guestCount + delta));
-    guestCountEl.textContent = String(guestCount);
-  }
-
-  guestMinusBtn.addEventListener("click", () => updateGuestCount(-1));
-  guestPlusBtn.addEventListener("click", () => updateGuestCount(1));
 
   function clearErrors() {
     fullNameError.textContent = "";
     attendanceError.textContent = "";
+    lactoseError.textContent = "";
   }
 
   function validate() {
@@ -480,6 +482,11 @@ function initRSVPForm() {
       isValid = false;
     }
 
+    if (attendanceInput.value === "yes" && !lactoseInput.value) {
+      lactoseError.textContent = "Por favor, indícanos si eres intolerante a la lactosa.";
+      isValid = false;
+    }
+
     return isValid;
   }
 
@@ -491,7 +498,7 @@ function initRSVPForm() {
     const data = {
       fullName: fullNameInput.value.trim(),
       attendance: attendanceInput.value,
-      guestCount: attendanceInput.value === "yes" ? guestCount : 0,
+      lactoseIntolerant: attendanceInput.value === "yes" ? lactoseInput.value : null,
       dietary: dietaryInput.value.trim(),
       message: messageInput.value.trim()
     };

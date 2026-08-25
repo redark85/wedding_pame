@@ -1053,12 +1053,14 @@ textarea:focus-visible {
   min-height: 1em;
 }
 
-.attendance-toggle {
+.attendance-toggle,
+.lactose-toggle {
   display: flex;
   gap: 0.75rem;
 }
 
-.attendance-btn {
+.attendance-btn,
+.lactose-btn {
   flex: 1;
   border: 1px solid var(--color-line);
   background: var(--color-white);
@@ -1071,45 +1073,15 @@ textarea:focus-visible {
   min-height: 44px;
 }
 
-.attendance-btn[aria-pressed="true"] {
+.attendance-btn[aria-pressed="true"],
+.lactose-btn[aria-pressed="true"] {
   background: var(--color-accent-dark);
   border-color: var(--color-accent-dark);
   color: var(--color-white);
 }
 
-.field--guests[hidden] {
+.field--lactose[hidden] {
   display: none;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.stepper__btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-line);
-  background: var(--color-white);
-  font-size: 1.1rem;
-  color: var(--color-accent-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stepper__btn:hover {
-  background: var(--color-accent-dark);
-  color: var(--color-white);
-}
-
-.stepper__value {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  min-width: 1.5rem;
-  text-align: center;
 }
 
 .rsvp-submit {
