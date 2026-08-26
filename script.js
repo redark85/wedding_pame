@@ -312,7 +312,7 @@ function initGallery() {
 
   const dots = dotsContainer ? dotsContainer.querySelectorAll(".gallery__dot") : [];
   let autoTimer;
-  const AUTO_INTERVAL = 6000;
+  const AUTO_INTERVAL = 3000;
 
   function startAuto() {
     clearInterval(autoTimer);
@@ -409,7 +409,22 @@ function initGallery() {
     }, { passive: true });
   }
 
-  goTo(0);
+  update();
+
+  const gallerySection = document.getElementById("gallery");
+  if (gallerySection && "IntersectionObserver" in window) {
+    const startOnce = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          goTo(0);
+          observer.unobserve(gallerySection);
+        }
+      });
+    }, { threshold: 0.3 });
+    startOnce.observe(gallerySection);
+  } else {
+    goTo(0);
+  }
 }
 
 /* ---------------------------------------------------------
