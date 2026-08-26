@@ -803,7 +803,7 @@ textarea:focus-visible {
   color: var(--color-accent-dark);
   text-align: center;
   position: relative;
-  background: var(--color-bg-alt);
+  background: #f7f1ee;
 }
 
 .dresscode-section .eyebrow {

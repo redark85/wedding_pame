@@ -92,10 +92,12 @@
         <img src="assets/images/divisorRosa.png" alt="" />
       </div>
 
-      <div class="intro__quote reveal">
-        <p class="intro__quote-text">
-          Elegimos compartir la vida, y queremos celebrarlo contigo
-        </p>
+      <div class="intro__quote">
+        <div class="reveal">
+          <p class="intro__quote-text">
+            Elegimos compartir la vida, y queremos celebrarlo contigo
+          </p>
+        </div>
       </div>
 
       <div class="intro__divisor intro__divisor--bottom">
@@ -134,15 +136,17 @@
       <div class="intro__divisor">
         <img src="assets/images/divisorRosa.png" alt="" />
       </div>
-      <div class="container reveal" style="background: #edd1cd;">
-        <p class="venue-card__name eyebrow--center" style="color: #5f8b7c !important;">Dress code</p>
-        <h2 class="dresscode__title" id="dressCodeText">Formal / Elegante</h2>
-        <p class="dresscode__text">          
-          Por favor, evita vestir <strong>blanco, verde o rosado</strong> en cualquier tonalidad</br>
-          ¡nos encantará verte en otros colores!
-        </p>
-        <p style="color: #5f8b7c;padding-top: 1rem;">Y para que nada te detenga en la pista de baile,
+      <div class="container" style="background: #edd1cd;">
+        <div class="reveal">
+          <p class="venue-card__name eyebrow--center" style="color: #5f8b7c !important;">Dress code</p>
+          <h2 class="dresscode__title" id="dressCodeText">Formal / Elegante</h2>
+          <p class="dresscode__text">          
+            Por favor, evita vestir <strong>blanco, verde o rosado</strong> en cualquier tonalidad</br>
+            ¡nos encantará verte en otros colores!
+          </p>
+          <p style="color: #5f8b7c;padding-top: 1rem;">Y para que nada te detenga en la pista de baile,
 ¡no olvides traer unos zapatos cómodos para bailar hasta el final!</p>
+        </div>
       </div>
        <div class="intro__divisor">
         <img src="assets/images/divisorRosa2.png" alt="" />
@@ -262,27 +266,29 @@
       <div class="intro__divisor">
         <img src="assets/images/divisorRosa.png" alt="" />
       </div>
-      <div class="container reveal" style="background: #edd1ce; padding-bottom: 5rem;">
-        <p class="venue-card__name eyebrow--center" style="color: #5f8b7c !important;">Nos vemos en</p>
-        <div class="countdown" id="countdownTimer" aria-live="polite">
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-days">00</span>
-            <span class="countdown__label">Días</span>
+      <div class="container" style="background: #edd1ce; padding-bottom: 5rem;">
+        <div class="reveal">
+          <p class="venue-card__name eyebrow--center" style="color: #5f8b7c !important;">Nos vemos en</p>
+          <div class="countdown" id="countdownTimer" aria-live="polite">
+            <div class="countdown__item">
+              <span class="countdown__value" id="cd-days">00</span>
+              <span class="countdown__label">Días</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" id="cd-hours">00</span>
+              <span class="countdown__label">Horas</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" id="cd-minutes">00</span>
+              <span class="countdown__label">Min</span>
+            </div>
+            <div class="countdown__item">
+              <span class="countdown__value" id="cd-seconds">00</span>
+              <span class="countdown__label">Seg</span>
+            </div>
           </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-hours">00</span>
-            <span class="countdown__label">Horas</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-minutes">00</span>
-            <span class="countdown__label">Min</span>
-          </div>
-          <div class="countdown__item">
-            <span class="countdown__value" id="cd-seconds">00</span>
-            <span class="countdown__label">Seg</span>
-          </div>
+          <p class="countdown__message" id="countdownMessage" hidden></p>
         </div>
-        <p class="countdown__message" id="countdownMessage" hidden></p>
       </div>
       
     </section>
