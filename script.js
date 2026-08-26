@@ -311,6 +311,13 @@ function initGallery() {
   }
 
   const dots = dotsContainer ? dotsContainer.querySelectorAll(".gallery__dot") : [];
+  let autoTimer;
+  const AUTO_INTERVAL = 6000;
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo((currentIndex + 1) % total), AUTO_INTERVAL);
+  }
 
   function update() {
     if (slidesContainer) {
@@ -324,6 +331,7 @@ function initGallery() {
   function goTo(index) {
     currentIndex = Math.max(0, Math.min(total - 1, index));
     update();
+    startAuto();
   }
 
   if (prevBtn) prevBtn.addEventListener("click", () => goTo(currentIndex - 1));
@@ -401,7 +409,7 @@ function initGallery() {
     }, { passive: true });
   }
 
-  update();
+  goTo(0);
 }
 
 /* ---------------------------------------------------------
