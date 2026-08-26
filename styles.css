@@ -1433,7 +1433,23 @@ audio, canvas, embed, iframe, img, object, svg, video {
 .animate-windy {
     animation: windy 5s ease-in-out infinite
 }
+.rotate-3 {
+  transform: rotate(3deg);
+}
 
+.-top-\[25px\] {
+  top: -25px;
+}
+
+.scale-x {
+  scale :1.1;
+}
+.scale-y {
+  scale :-1;
+}
+.-bottom-\[48px\] {
+    bottom: -48px;
+}
 /* =========================================================
    La invitación se muestra siempre como una tarjeta de ancho
    móvil (ver .app-shell), tanto en teléfono como en escritorio,
