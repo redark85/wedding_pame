@@ -1452,7 +1452,7 @@ audio, canvas, embed, iframe, img, object, svg, video {
   scale :-1;
 }
 .-bottom-\[48px\] {
-    bottom: -48px;
+    bottom: -25px;
 }
 /* =========================================================
    La invitación se muestra siempre como una tarjeta de ancho
