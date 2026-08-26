@@ -422,7 +422,6 @@ function initRSVPForm() {
   const lactoseField = document.getElementById("lactoseField");
   const dietaryInput = document.getElementById("dietary");
   const dietField = document.getElementById("dietField");
-  const messageInput = document.getElementById("message");
   const successBox = document.getElementById("rsvpSuccess");
   const successTitle = document.getElementById("rsvpSuccessTitle");
   const successText = document.getElementById("rsvpSuccessText");
@@ -498,8 +497,7 @@ function initRSVPForm() {
       fullName: fullNameInput.value.trim(),
       attendance: attendanceInput.value,
       lactoseIntolerant: attendanceInput.value === "yes" ? lactoseInput.value : null,
-      dietary: dietaryInput.value.trim(),
-      message: messageInput.value.trim()
+      dietary: dietaryInput.value.trim()
     };
 
     submitBtn.disabled = true;
