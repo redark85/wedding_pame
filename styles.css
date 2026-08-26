@@ -1010,7 +1010,6 @@ textarea:focus-visible {
 
 .rsvp__subtitle {
   color: var(--color-text-soft);
-  margin-bottom: 2rem;
 }
 
 .rsvp-form {
