@@ -252,7 +252,7 @@ p {
     font-family: var(--font-script);
     font-weight: 400;
     letter-spacing: 0.01em;
-    font-size: 3.4rem !important;
+    font-size: 3.0rem !important;
     color: var(--color-accent-dark)
 }
 
@@ -717,7 +717,7 @@ textarea:focus-visible {
 }
 
 .venue-card__name {
-  font-size: 2.4rem;
+  font-size: 2.0rem;
   margin-bottom: 0.4rem;
   font-style: italic;
   color: var(--color-accent-dark)
