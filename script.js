@@ -114,7 +114,7 @@ function applyWeddingConfig() {
 
   document.getElementById("ceremonyName").textContent = wedding.ceremony.name;
   document.getElementById("ceremonyAddress").textContent = wedding.ceremony.address;
-  document.getElementById("ceremonyTime").textContent = `${wedding.ceremony.time} h`;
+  document.getElementById("ceremonyTime").textContent = `${wedding.ceremony.time} AM`;
   if (ceremonyMapsBtn) {
     ceremonyMapsBtn.addEventListener("click", () => {
       window.open(wedding.ceremony.mapsUrl, "_blank", "noopener,noreferrer");
