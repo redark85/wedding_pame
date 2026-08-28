@@ -439,24 +439,12 @@ function initRSVPForm() {
   const attendanceInput = document.getElementById("attendance");
   const attendanceError = document.getElementById("attendanceError");
   const attendanceBtns = form.querySelectorAll(".attendance-btn");
-  const lactoseInput = document.getElementById("lactoseIntolerant");
-  const lactoseError = document.getElementById("lactoseError");
-  const lactoseBtns = form.querySelectorAll(".lactose-btn");
-  const lactoseField = document.getElementById("lactoseField");
   const dietaryInput = document.getElementById("dietary");
   const dietField = document.getElementById("dietField");
   const successBox = document.getElementById("rsvpSuccess");
   const successTitle = document.getElementById("rsvpSuccessTitle");
   const successText = document.getElementById("rsvpSuccessText");
   const submitBtn = document.getElementById("rsvpSubmitBtn");
-
-  function setLactoseIntolerance(value) {
-    lactoseInput.value = value;
-    lactoseBtns.forEach((btn) => {
-      const isActive = btn.dataset.value === value;
-      btn.setAttribute("aria-pressed", String(isActive));
-    });
-  }
 
   function setAttendance(value) {
     attendanceInput.value = value;
@@ -466,27 +454,19 @@ function initRSVPForm() {
     });
 
     const showExtras = value === "yes";
-    lactoseField.hidden = !showExtras;
     dietField.hidden = !showExtras;
-    if (!showExtras) setLactoseIntolerance("");
   }
 
   attendanceBtns.forEach((btn) => {
     btn.addEventListener("click", () => setAttendance(btn.dataset.value));
   });
 
-  lactoseBtns.forEach((btn) => {
-    btn.addEventListener("click", () => setLactoseIntolerance(btn.dataset.value));
-  });
-
   // Estado inicial: campos adicionales ocultos hasta confirmar asistencia
-  lactoseField.hidden = true;
   dietField.hidden = true;
 
   function clearErrors() {
     fullNameError.textContent = "";
     attendanceError.textContent = "";
-    lactoseError.textContent = "";
   }
 
   function validate() {
@@ -503,11 +483,6 @@ function initRSVPForm() {
       isValid = false;
     }
 
-    if (attendanceInput.value === "yes" && !lactoseInput.value) {
-      lactoseError.textContent = "Por favor, indícanos si eres intolerante a la lactosa.";
-      isValid = false;
-    }
-
     return isValid;
   }
 
@@ -519,7 +494,6 @@ function initRSVPForm() {
     const data = {
       fullName: fullNameInput.value.trim(),
       attendance: attendanceInput.value,
-      lactoseIntolerant: attendanceInput.value === "yes" ? lactoseInput.value : null,
       dietary: dietaryInput.value.trim()
     };
 

@@ -1056,14 +1056,12 @@ textarea:focus-visible {
   min-height: 1em;
 }
 
-.attendance-toggle,
-.lactose-toggle {
+.attendance-toggle {
   display: flex;
   gap: 0.75rem;
 }
 
-.attendance-btn,
-.lactose-btn {
+.attendance-btn {
   flex: 1;
   border: 1px solid var(--color-line);
   background: var(--color-white);
@@ -1076,15 +1074,10 @@ textarea:focus-visible {
   min-height: 44px;
 }
 
-.attendance-btn[aria-pressed="true"],
-.lactose-btn[aria-pressed="true"] {
+.attendance-btn[aria-pressed="true"] {
   background: var(--color-accent-dark);
   border-color: var(--color-accent-dark);
   color: var(--color-white);
-}
-
-.field--lactose[hidden] {
-  display: none;
 }
 
 .rsvp-submit {
