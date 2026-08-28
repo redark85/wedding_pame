@@ -471,7 +471,7 @@ textarea:focus-visible {
 
 .hero__date {
   font-family: var(--font-body);
-  font-size: clamp(0.85rem, 3.6vw, 1.5rem);
+  font-size: clamp(1.15rem, 3.6vw, 1.5rem);
   letter-spacing: 0.18em;
   color: var(--color-text-soft);
   margin: 0;
