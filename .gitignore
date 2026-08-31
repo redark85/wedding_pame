@@ -1,0 +1,10 @@
+# Credenciales y configuración local
+.env
+.env.local
+
+# Logs
+*.log
+
+# Sistemas operativos
+.DS_Store
+Thumbs.db

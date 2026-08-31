@@ -1,18 +1,4 @@
-const ADMIN_USER = "admin";
-const ADMIN_PASSWORD = "pame&stefano2026";
-
-const mockGuests = [
-  { id: 1, fullName: "María Elena Vargas", attendance: "yes", dietary: "Vegetariana", submittedAt: "2026-08-28T18:34:00" },
-  { id: 2, fullName: "Juan Carlos Pérez", attendance: "yes", dietary: "", submittedAt: "2026-08-28T19:12:00" },
-  { id: 3, fullName: "Ana Lucía Gómez + acompañante", attendance: "yes", dietary: "Alergia a frutos secos", submittedAt: "2026-08-29T09:45:00" },
-  { id: 4, fullName: "Roberto Andrade", attendance: "no", dietary: "", submittedAt: "2026-08-29T11:20:00" },
-  { id: 5, fullName: "Daniela Salazar", attendance: "yes", dietary: "Sin gluten", submittedAt: "2026-08-29T14:05:00" },
-  { id: 6, fullName: "Familia Morales (3 personas)", attendance: "yes", dietary: "Una persona vegetariana", submittedAt: "2026-08-30T08:10:00" },
-  { id: 7, fullName: "Luis Fernando Díaz", attendance: "no", dietary: "", submittedAt: "2026-08-30T10:30:00" },
-  { id: 8, fullName: "Carmen Jiménez", attendance: "yes", dietary: "", submittedAt: "2026-08-30T12:15:00" },
-  { id: 9, fullName: "Pedro Antonio Suárez", attendance: "yes", dietary: "Diabético", submittedAt: "2026-08-30T16:50:00" },
-  { id: 10, fullName: "Isabel Miranda", attendance: "yes", dietary: "", submittedAt: "2026-08-30T19:22:00" }
-];
+import { supabase } from "./supabase-client.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginSection = document.getElementById("adminLogin");
@@ -26,25 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const summary = document.getElementById("adminSummary");
   const empty = document.getElementById("adminEmpty");
 
-  function isLoggedIn() {
-    return sessionStorage.getItem("adminLoggedIn") === "true";
-  }
-
   function showDashboard() {
     if (loginSection) loginSection.hidden = true;
     if (dashboardSection) {
       dashboardSection.hidden = false;
       dashboardSection.style.display = "block";
     }
-
-    renderGuests();
+    loadGuests();
   }
 
-  function showLogin() {
-    loginSection.hidden = false;
-    dashboardSection.hidden = true;
-    loginError.textContent = "";
-    loginForm.reset();
+  function showLogin(message = "") {
+    if (loginSection) loginSection.hidden = false;
+    if (dashboardSection) dashboardSection.hidden = true;
+    if (loginError) loginError.textContent = message;
+    if (loginForm) loginForm.reset();
   }
 
   function formatDate(isoString) {
@@ -64,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateSummary(guests) {
+    if (!summary) return;
     const total = guests.length;
     const confirmed = guests.filter((g) => g.attendance === "yes").length;
     const declined = guests.filter((g) => g.attendance === "no").length;
@@ -74,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  function renderGuests() {
+  function renderGuests(guests) {
     if (!searchInput || !filterSelect || !guestsBody || !summary || !empty) {
       console.error("Faltan elementos del dashboard", { searchInput, filterSelect, guestsBody, summary, empty });
       return;
@@ -83,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const query = (searchInput.value || "").toLowerCase().trim();
     const filter = filterSelect.value;
 
-    const filtered = mockGuests.filter((guest) => {
-      const matchesSearch = guest.fullName.toLowerCase().includes(query);
+    const filtered = guests.filter((guest) => {
+      const matchesSearch = (guest.full_name || "").toLowerCase().includes(query);
       const matchesFilter = filter === "all" || guest.attendance === filter;
       return matchesSearch && matchesFilter;
     });
@@ -102,45 +84,68 @@ document.addEventListener("DOMContentLoaded", () => {
     filtered.forEach((guest) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td data-label="Nombre">${guest.fullName}</td>
+        <td data-label="Nombre">${guest.full_name}</td>
         <td data-label="Asistencia"><span class="admin-badge ${guest.attendance === "yes" ? "admin-badge--confirmed" : "admin-badge--declined"}">${attendanceLabel(guest.attendance)}</span></td>
         <td data-label="Restricciones">${guest.dietary || "—"}</td>
-        <td data-label="Fecha">${formatDate(guest.submittedAt)}</td>
+        <td data-label="Fecha">${formatDate(guest.submitted_at)}</td>
       `;
       guestsBody.appendChild(row);
     });
   }
 
-  if (isLoggedIn()) {
-    showDashboard();
-  } else {
-    showLogin();
+  async function loadGuests() {
+    if (!guestsBody) return;
+    guestsBody.innerHTML = `<tr><td colspan="4" style="text-align:center">Cargando confirmaciones…</td></tr>`;
+
+    const { data, error } = await supabase
+      .from("rsvp")
+      .select("*")
+      .order("submitted_at", { ascending: false });
+
+    if (error) {
+      console.error("Error cargando invitados:", error);
+      guestsBody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:red">No se pudieron cargar los datos.</td></tr>`;
+      return;
+    }
+
+    renderGuests(data || []);
   }
 
-  function handleLogin(event) {
+  async function checkSession() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  }
+
+  async function handleLogin(event) {
     if (event) event.preventDefault();
 
-    const userEl = document.getElementById("adminUser");
+    const emailEl = document.getElementById("adminEmail");
     const passEl = document.getElementById("adminPassword");
 
-    if (!userEl || !passEl) {
+    if (!emailEl || !passEl) {
       console.error("No se encontraron los campos de login");
       return;
     }
 
-    const user = userEl.value.trim();
+    const email = emailEl.value.trim();
     const password = passEl.value;
 
-    if (user === ADMIN_USER && password === ADMIN_PASSWORD) {
-      sessionStorage.setItem("adminLoggedIn", "true");
-      showDashboard();
-    } else {
-      loginError.textContent = "Usuario o contraseña incorrectos.";
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      if (loginError) loginError.textContent = "Usuario o contraseña incorrectos.";
+      console.error("Error de autenticación:", error);
+      return;
     }
+
+    showDashboard();
   }
 
-  if (!loginForm) {
-  } else {
+  if (loginForm) {
     loginForm.addEventListener("submit", handleLogin);
   }
 
@@ -152,11 +157,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  logoutBtn.addEventListener("click", () => {
-    sessionStorage.removeItem("adminLoggedIn");
-    showLogin();
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      showLogin();
+    });
+  }
+
+  if (searchInput) searchInput.addEventListener("input", () => loadGuests());
+  if (filterSelect) filterSelect.addEventListener("change", () => loadGuests());
+
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_IN" && session) {
+      showDashboard();
+    } else if (event === "SIGNED_OUT") {
+      showLogin();
+    }
   });
 
-  searchInput.addEventListener("input", renderGuests);
-  filterSelect.addEventListener("change", renderGuests);
+  checkSession();
 });

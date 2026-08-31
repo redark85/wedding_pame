@@ -7,6 +7,8 @@
    únicamente el objeto `wedding` a continuación.
    ========================================================= */
 
+import { supabase } from "./supabase-client.js";
+
 const wedding = {
   couple: "Pamela Almeida & Estéfano Cevallos",
   date: "12 de diciembre de 2026",
@@ -523,7 +525,7 @@ function initRSVPForm() {
       }
     } catch (error) {
       attendanceError.textContent =
-        "Ha ocurrido un error al enviar tu confirmación. Inténtalo de nuevo.";
+        error.message || "Ha ocurrido un error al enviar tu confirmación. Inténtalo de nuevo.";
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = "Confirmar";
@@ -532,25 +534,21 @@ function initRSVPForm() {
 }
 
 /* ---------------------------------------------------------
-   Punto de integración futura con backend.
-   Por ahora simula una respuesta exitosa sin enviar datos
-   a ningún servicio externo.
-
-   TODO: conectar posteriormente con backend
+   Envío de confirmación a Supabase
    --------------------------------------------------------- */
 async function submitRSVP(data) {
-  // TODO: conectar posteriormente con backend
-  // Ejemplo futuro:
-  // const response = await fetch("/api/rsvp", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(data)
-  // });
-  // return response.json();
+  const payload = {
+    full_name: data.fullName,
+    attendance: data.attendance,
+    dietary: data.dietary || null
+  };
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ success: true, data });
-    }, 600);
-  });
+
+  const { error } = await supabase.from("rsvp").insert(payload);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return { success: true, data };
 }
