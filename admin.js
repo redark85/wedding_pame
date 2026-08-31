@@ -58,10 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  async function updateAttendance(id, attendance) {
+  async function updateAttendance(id, attendance, dietary = null) {
+    const updateData = { attendance };
+    if (dietary !== undefined) {
+      updateData.dietary = dietary || null;
+    }
+
     const { error } = await supabase
       .from("rsvp")
-      .update({ attendance })
+      .update(updateData)
       .eq("id", id);
 
     if (error) {
@@ -145,8 +150,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         target.disabled = true;
         try {
-          if (action === "yes" || action === "no") {
-            await updateAttendance(id, action);
+          if (action === "yes") {
+            const guest = allGuests.find((g) => g.id === id);
+            const currentDietary = guest ? guest.dietary : "";
+            const dietary = prompt(
+              "¿Tiene restricciones alimenticias? (déjalo vacío si no aplica)",
+              currentDietary || ""
+            );
+            if (dietary === null) return; // Cancelar no hace nada
+            await updateAttendance(id, "yes", dietary.trim() || null);
+          } else if (action === "no") {
+            await updateAttendance(id, "no");
           } else if (action === "delete") {
             await deleteGuest(id);
           }

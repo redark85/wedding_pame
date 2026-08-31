@@ -1071,6 +1071,10 @@ textarea:focus-visible {
 }
 
 .field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="search"],
+.field input[type="tel"],
 .field textarea {
   width: 100%;
   border: 1px solid var(--color-line);
@@ -1081,6 +1085,18 @@ textarea:focus-visible {
   background: var(--color-white);
   color: var(--color-text);
   min-height: 44px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.field input[type="text"]:focus,
+.field input[type="email"]:focus,
+.field input[type="password"]:focus,
+.field input[type="search"]:focus,
+.field input[type="tel"]:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(111, 138, 105, 0.15);
 }
 
 .field textarea {
@@ -1546,9 +1562,18 @@ audio, canvas, embed, iframe, img, object, svg, video {
   gap: 1.25rem;
 }
 
-.admin-form .field input {
+.admin-form .field input[type="email"],
+.admin-form .field input[type="password"] {
   padding: 0.85rem 1rem;
   font-size: 1rem;
+  border: 1px solid var(--color-text-soft);
+  background: var(--color-white);
+}
+
+.admin-form .field input[type="email"]:focus,
+.admin-form .field input[type="password"]:focus {
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 0 0 3px rgba(59, 74, 55, 0.15);
 }
 
 .admin-submit {
