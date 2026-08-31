@@ -1654,11 +1654,21 @@ audio, canvas, embed, iframe, img, object, svg, video {
   color: #a65a4c;
 }
 
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
 .admin-filters {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  flex: 1;
+  min-width: 260px;
 }
 
 .admin-search {
@@ -1683,6 +1693,12 @@ audio, canvas, embed, iframe, img, object, svg, video {
 .admin-select {
   min-width: 220px;
   flex-shrink: 0;
+}
+
+.admin-download {
+  flex-shrink: 0;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.75rem;
 }
 
 .admin-table-wrap {
@@ -1746,6 +1762,27 @@ audio, canvas, embed, iframe, img, object, svg, video {
   background: var(--color-white);
   border-radius: 12px;
   font-size: 1rem;
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.admin-pagination__info {
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  min-width: 140px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {

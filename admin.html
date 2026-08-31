@@ -45,15 +45,18 @@
 
       <div class="admin-summary" id="adminSummary"></div>
 
-      <div class="admin-filters">
-        <label class="admin-search" for="adminSearch">
-          <input type="search" id="adminSearch" placeholder="Buscar invitado..." />
-        </label>
-        <select id="adminFilter" class="admin-select">
-          <option value="all">Todos</option>
-          <option value="yes">Confirman asistencia</option>
-          <option value="no">No asistirán</option>
-        </select>
+      <div class="admin-toolbar">
+        <div class="admin-filters">
+          <label class="admin-search" for="adminSearch">
+            <input type="search" id="adminSearch" placeholder="Buscar invitado..." />
+          </label>
+          <select id="adminFilter" class="admin-select">
+            <option value="all">Todos</option>
+            <option value="yes">Confirman asistencia</option>
+            <option value="no">No asistirán</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn--outline admin-download" id="adminDownloadBtn">Descargar Excel (.csv)</button>
       </div>
 
       <div class="admin-table-wrap">
@@ -72,6 +75,12 @@
       </div>
 
       <div class="admin-empty" id="adminEmpty" hidden>No se encontraron invitados.</div>
+
+      <div class="admin-pagination" id="adminPagination" hidden>
+        <button type="button" class="btn btn--small btn--outline" id="adminPrevPage" disabled>Anterior 10</button>
+        <span class="admin-pagination__info" id="adminPageInfo">Mostrando 0 de 0</span>
+        <button type="button" class="btn btn--small btn--outline" id="adminNextPage" disabled>Siguiente 10</button>
+      </div>
     </section>
   </div>
 

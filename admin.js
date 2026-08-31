@@ -11,8 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const guestsBody = document.getElementById("adminGuestsBody");
   const summary = document.getElementById("adminSummary");
   const empty = document.getElementById("adminEmpty");
+  const pagination = document.getElementById("adminPagination");
+  const prevPageBtn = document.getElementById("adminPrevPage");
+  const nextPageBtn = document.getElementById("adminNextPage");
+  const pageInfo = document.getElementById("adminPageInfo");
+  const downloadBtn = document.getElementById("adminDownloadBtn");
 
   let allGuests = [];
+  let currentPage = 1;
+  const pageSize = 10;
 
   function showDashboard() {
     if (loginSection) loginSection.hidden = true;
@@ -44,6 +51,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function attendanceLabel(value) {
     return value === "yes" ? "Asistirá" : "No asistirá";
+  }
+
+  function escapeCsv(value) {
+    const str = value == null ? "" : String(value);
+    if (str.includes(",") || str.includes('"') || str.includes("\n") || str.includes("\r")) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  }
+
+  function downloadGuests(guests) {
+    const headers = ["Nombre", "Asistencia", "Restricciones", "Fecha"];
+    const rows = guests.map((guest) => [
+      guest.full_name,
+      attendanceLabel(guest.attendance),
+      guest.dietary || "—",
+      formatDate(guest.submitted_at)
+    ]);
+    const csvContent = [headers, ...rows]
+      .map((row) => row.map(escapeCsv).join(","))
+      .join("\r\n");
+    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `invitados_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 
   function updateSummary(guests) {
@@ -115,12 +152,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (filtered.length === 0) {
       empty.hidden = false;
+      if (pagination) pagination.hidden = true;
       return;
     }
 
     empty.hidden = true;
 
-    filtered.forEach((guest) => {
+    const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    const pageGuests = filtered.slice(start, end);
+
+    pageGuests.forEach((guest) => {
       const oppositeBtn = guest.attendance === "yes"
         ? `<button type="button" class="btn btn--small btn--danger" data-action="no" data-id="${guest.id}">No asistirá</button>`
         : `<button type="button" class="btn btn--small btn--success" data-action="yes" data-id="${guest.id}">Sí asistirá</button>`;
@@ -169,9 +214,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+
+    renderPagination(filtered.length, totalPages);
+  }
+
+  function renderPagination(totalItems, totalPages) {
+    if (!pagination || !prevPageBtn || !nextPageBtn || !pageInfo) return;
+
+    const start = (currentPage - 1) * pageSize + 1;
+    const end = Math.min(currentPage * pageSize, totalItems);
+    pageInfo.textContent = `Mostrando ${start} - ${end} de ${totalItems}`;
+
+    prevPageBtn.disabled = currentPage <= 1;
+    nextPageBtn.disabled = currentPage >= totalPages;
+    pagination.hidden = totalPages <= 1;
   }
 
   function applyFilters() {
+    currentPage = 1;
     renderGuests(allGuests);
   }
 
@@ -249,6 +309,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (searchInput) searchInput.addEventListener("input", applyFilters);
   if (filterSelect) filterSelect.addEventListener("change", applyFilters);
+
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage -= 1;
+        renderGuests(allGuests);
+      }
+    });
+  }
+
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener("click", () => {
+      const query = (searchInput.value || "").toLowerCase().trim();
+      const filter = filterSelect.value;
+      const filtered = allGuests.filter((guest) => {
+        const matchesSearch = (guest.full_name || "").toLowerCase().includes(query);
+        const matchesFilter = filter === "all" || guest.attendance === filter;
+        return matchesSearch && matchesFilter;
+      });
+      const totalPages = Math.ceil(filtered.length / pageSize);
+      if (currentPage < totalPages) {
+        currentPage += 1;
+        renderGuests(allGuests);
+      }
+    });
+  }
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+      downloadGuests(allGuests);
+    });
+  }
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === "SIGNED_IN" && session) {
