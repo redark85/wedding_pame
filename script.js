@@ -16,7 +16,7 @@ const wedding = {
 
   ceremony: {
     name: "Hacienda Santa Isabel",
-    address: "Aguamaña y Via Antigua, Quito",
+    address: "Amaguaña y Via Antigua, Quito",
     time: "11:30",
     mapsUrl: "https://maps.app.goo.gl/5cDXNtQb9MtbwrJB8?g_st=iw"
   },
