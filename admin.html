@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Pamela & Estéfano</title>
+  <meta name="theme-color" content="#3b4a37" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <section class="admin-login" id="adminLogin">
+      <div class="admin-card">
+        <h1 class="admin-title">Administración</h1>
+        <p class="admin-subtitle">Pamela Almeida & Estéfano Cevallos</p>
+
+        <form id="adminLoginForm" class="admin-form" novalidate>
+          <div class="field">
+            <label for="adminUser">Usuario</label>
+            <input type="text" id="adminUser" name="adminUser" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label for="adminPassword">Contraseña</label>
+            <input type="password" id="adminPassword" name="adminPassword" autocomplete="current-password" required />
+          </div>
+          <span class="field__error" id="adminLoginError" role="alert"></span>
+          <button type="submit" class="btn btn--primary admin-submit">Ingresar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-dashboard" id="adminDashboard" hidden>
+      <header class="admin-header">
+        <div>
+          <h1 class="admin-title">Dashboard</h1>
+          <p class="admin-subtitle">Lista de invitados confirmados</p>
+        </div>
+        <button type="button" class="btn btn--outline admin-logout" id="adminLogoutBtn">Cerrar sesión</button>
+      </header>
+
+      <div class="admin-summary" id="adminSummary"></div>
+
+      <div class="admin-filters">
+        <label class="admin-search" for="adminSearch">
+          <input type="search" id="adminSearch" placeholder="Buscar invitado..." />
+        </label>
+        <select id="adminFilter" class="admin-select">
+          <option value="all">Todos</option>
+          <option value="yes">Confirman asistencia</option>
+          <option value="no">No asistirán</option>
+        </select>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Asistencia</th>
+              <th>Restricciones</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="adminGuestsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="admin-empty" id="adminEmpty" hidden>No se encontraron invitados.</div>
+    </section>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

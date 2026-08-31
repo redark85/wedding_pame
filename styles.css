@@ -1452,3 +1452,303 @@ audio, canvas, embed, iframe, img, object, svg, video {
    a propósito para imitar la experiencia de una invitación
    digital tipo "story". No hay breakpoints que la ensanchen.
    ========================================================= */
+
+/* =========================================================
+   Admin dashboard — desktop first
+   ========================================================= */
+[hidden] {
+  display: none !important;
+}
+
+.admin-layout {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg-alt);
+}
+
+.admin-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(59, 74, 55, 0.1);
+}
+
+.admin-title {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--color-accent-dark);
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.admin-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-text-soft);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-form .field input {
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+}
+
+.admin-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  font-size: 0.85rem;
+}
+
+.admin-dashboard {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2.5rem 3rem;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.admin-header .admin-title {
+  text-align: left;
+  font-size: 2.6rem;
+  margin-bottom: 0;
+}
+
+.admin-header .admin-subtitle {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.admin-logout {
+  font-size: 0.75rem;
+  padding: 0.75rem 1.25rem;
+}
+
+.admin-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 220px));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-stat {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(59, 74, 55, 0.05);
+}
+
+.admin-stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-accent-dark);
+  margin-bottom: 0.25rem;
+}
+
+.admin-stat span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-soft);
+}
+
+.admin-stat--confirmed strong {
+  color: #4a7c59;
+}
+
+.admin-stat--declined strong {
+  color: #a65a4c;
+}
+
+.admin-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-search {
+  flex: 1;
+  min-width: 260px;
+  max-width: 420px;
+}
+
+.admin-search input,
+.admin-select {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: var(--color-white);
+  color: var(--color-text);
+  min-height: 44px;
+}
+
+.admin-select {
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.admin-table-wrap {
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(59, 74, 55, 0.05);
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.admin-table th {
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  background: var(--color-bg);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-badge--confirmed {
+  background: #e8f3ec;
+  color: #4a7c59;
+}
+
+.admin-badge--declined {
+  background: #f7eae8;
+  color: #a65a4c;
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--color-text-soft);
+  background: var(--color-white);
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .admin-login {
+    padding: 1.5rem;
+  }
+
+  .admin-card {
+    padding: 2rem;
+  }
+
+  .admin-dashboard {
+    padding: 1.5rem;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .admin-summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .admin-stat {
+    padding: 1rem;
+  }
+
+  .admin-stat strong {
+    font-size: 1.5rem;
+  }
+
+  .admin-table thead {
+    display: none;
+  }
+
+  .admin-table,
+  .admin-table tbody,
+  .admin-table tr,
+  .admin-table td {
+    display: block;
+  }
+
+  .admin-table {
+    min-width: unset;
+  }
+
+  .admin-table tr {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .admin-table td {
+    border: none;
+    padding: 0.4rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .admin-table td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: var(--color-accent-dark);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
