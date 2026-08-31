@@ -53,30 +53,33 @@ document.addEventListener("DOMContentLoaded", () => {
     return value === "yes" ? "Asistirá" : "No asistirá";
   }
 
-  function escapeCsv(value) {
-    const str = value == null ? "" : String(value);
-    if (str.includes(",") || str.includes('"') || str.includes("\n") || str.includes("\r")) {
-      return `"${str.replace(/"/g, '""')}"`;
-    }
-    return str;
-  }
-
   function downloadGuests(guests) {
-    const headers = ["Nombre", "Asistencia", "Restricciones", "Fecha"];
-    const rows = guests.map((guest) => [
-      guest.full_name,
-      attendanceLabel(guest.attendance),
-      guest.dietary || "—",
-      formatDate(guest.submitted_at)
-    ]);
-    const csvContent = [headers, ...rows]
-      .map((row) => row.map(escapeCsv).join(","))
-      .join("\r\n");
-    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    if (typeof XLSX === "undefined") {
+      alert("La librería de Excel aún no se ha cargado. Intenta de nuevo en unos segundos.");
+      return;
+    }
+
+    const rows = guests.map((guest) => ({
+      Nombre: guest.full_name,
+      Asistencia: attendanceLabel(guest.attendance),
+      Restricciones: guest.dietary || "—",
+      Fecha: formatDate(guest.submitted_at)
+    }));
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(rows, {
+      header: ["Nombre", "Asistencia", "Restricciones", "Fecha"]
+    });
+    XLSX.utils.book_append_sheet(wb, ws, "Invitados");
+
+    const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const blob = new Blob([wbout], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `invitados_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.download = `invitados_${new Date().toISOString().slice(0, 10)}.xlsx`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
