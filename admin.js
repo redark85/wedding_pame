@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const summary = document.getElementById("adminSummary");
   const empty = document.getElementById("adminEmpty");
 
+  let allGuests = [];
+
   function showDashboard() {
     if (loginSection) loginSection.hidden = true;
     if (dashboardSection) {
@@ -56,6 +58,38 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  async function updateAttendance(id, attendance) {
+    const { error } = await supabase
+      .from("rsvp")
+      .update({ attendance })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error actualizando asistencia:", error);
+      alert("No se pudo actualizar el estado de asistencia.");
+      return;
+    }
+
+    await loadGuests();
+  }
+
+  async function deleteGuest(id) {
+    if (!confirm("¿Seguro que quieres eliminar esta confirmación?")) return;
+
+    const { error } = await supabase
+      .from("rsvp")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error eliminando invitado:", error);
+      alert("No se pudo eliminar la confirmación.");
+      return;
+    }
+
+    await loadGuests();
+  }
+
   function renderGuests(guests) {
     if (!searchInput || !filterSelect || !guestsBody || !summary || !empty) {
       console.error("Faltan elementos del dashboard", { searchInput, filterSelect, guestsBody, summary, empty });
@@ -82,20 +116,54 @@ document.addEventListener("DOMContentLoaded", () => {
     empty.hidden = true;
 
     filtered.forEach((guest) => {
+      const oppositeBtn = guest.attendance === "yes"
+        ? `<button type="button" class="btn btn--small btn--danger" data-action="no" data-id="${guest.id}">No asistirá</button>`
+        : `<button type="button" class="btn btn--small btn--success" data-action="yes" data-id="${guest.id}">Sí asistirá</button>`;
+
       const row = document.createElement("tr");
+      row.dataset.id = guest.id;
       row.innerHTML = `
         <td data-label="Nombre">${guest.full_name}</td>
         <td data-label="Asistencia"><span class="admin-badge ${guest.attendance === "yes" ? "admin-badge--confirmed" : "admin-badge--declined"}">${attendanceLabel(guest.attendance)}</span></td>
         <td data-label="Restricciones">${guest.dietary || "—"}</td>
         <td data-label="Fecha">${formatDate(guest.submitted_at)}</td>
+        <td data-label="Acciones">
+          <div class="admin-actions">
+            ${oppositeBtn}
+            <button type="button" class="btn btn--small btn--outline" data-action="delete" data-id="${guest.id}">Eliminar</button>
+          </div>
+        </td>
       `;
       guestsBody.appendChild(row);
     });
+
+    guestsBody.querySelectorAll("button[data-action]").forEach((btn) => {
+      btn.addEventListener("click", async (event) => {
+        const target = event.currentTarget;
+        const action = target.dataset.action;
+        const id = target.dataset.id;
+
+        target.disabled = true;
+        try {
+          if (action === "yes" || action === "no") {
+            await updateAttendance(id, action);
+          } else if (action === "delete") {
+            await deleteGuest(id);
+          }
+        } finally {
+          target.disabled = false;
+        }
+      });
+    });
+  }
+
+  function applyFilters() {
+    renderGuests(allGuests);
   }
 
   async function loadGuests() {
     if (!guestsBody) return;
-    guestsBody.innerHTML = `<tr><td colspan="4" style="text-align:center">Cargando confirmaciones…</td></tr>`;
+    guestsBody.innerHTML = `<tr><td colspan="5" style="text-align:center">Cargando confirmaciones…</td></tr>`;
 
     const { data, error } = await supabase
       .from("rsvp")
@@ -104,11 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (error) {
       console.error("Error cargando invitados:", error);
-      guestsBody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:red">No se pudieron cargar los datos.</td></tr>`;
+      guestsBody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:red">No se pudieron cargar los datos.</td></tr>`;
       return;
     }
 
-    renderGuests(data || []);
+    allGuests = data || [];
+    renderGuests(allGuests);
   }
 
   async function checkSession() {
@@ -164,8 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (searchInput) searchInput.addEventListener("input", () => loadGuests());
-  if (filterSelect) filterSelect.addEventListener("change", () => loadGuests());
+  if (searchInput) searchInput.addEventListener("input", applyFilters);
+  if (filterSelect) filterSelect.addEventListener("change", applyFilters);
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === "SIGNED_IN" && session) {

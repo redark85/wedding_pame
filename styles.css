@@ -23,6 +23,10 @@
   --color-line: #e9ded6;
   --color-rosa:#edd1ce;
   --color-verde:#5f8b7c;
+  --color-success: #5f8b7c;
+  --color-success-dark: #4a7064;
+  --color-danger: #b76b6b;
+  --color-danger-dark: #965656;
   --font-display: "Cormorant Garamond", serif;
   --font-script: "Great Vibes", cursive;
   --font-body: "Jost", sans-serif;
@@ -292,6 +296,42 @@ p {
 .btn--outline:focus-visible {
   background: var(--color-accent-dark);
   color: var(--color-white);
+}
+
+.btn--small {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  min-height: 32px;
+}
+
+.btn--success {
+  background: var(--color-success, #5f8b7c);
+  color: var(--color-white);
+  border-color: var(--color-success, #5f8b7c);
+}
+
+.btn--success:hover,
+.btn--success:focus-visible {
+  background: var(--color-success-dark, #4a7064);
+  border-color: var(--color-success-dark, #4a7064);
+}
+
+.btn--danger {
+  background: var(--color-danger, #b76b6b);
+  color: var(--color-white);
+  border-color: var(--color-danger, #b76b6b);
+}
+
+.btn--danger:hover,
+.btn--danger:focus-visible {
+  background: var(--color-danger-dark, #965656);
+  border-color: var(--color-danger-dark, #965656);
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 button:focus-visible,
