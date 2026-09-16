@@ -11,8 +11,8 @@ import { supabase } from "./supabase-client.js";
 
 const wedding = {
   couple: "Pamela Almeida & Estéfano Cevallos",
-  date: "12 de diciembre de 2026",
-  weddingDate: "2026-12-12T11:30:00",
+  date: "19 de diciembre de 2026",
+  weddingDate: "2026-12-19T11:30:00",
 
   ceremony: {
     name: "Hacienda Santa Isabel",

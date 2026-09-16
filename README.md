@@ -36,8 +36,8 @@ Al inicio de `script.js` encontrarás el objeto de configuración:
 ```javascript
 const wedding = {
   couple: "María & Juan",
-  date: "12 de diciembre de 2026",
-  weddingDate: "2026-12-12T16:00:00",
+  date: "19 de diciembre de 2026",
+  weddingDate: "2026-12-19T16:00:00",
   ceremony: { ... },
   reception: { ... },
   dressCode: "Formal / Elegante",
